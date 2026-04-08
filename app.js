@@ -1200,6 +1200,344 @@ const library = [
   },
 ];
 
+const pageCounts = {
+  "assets/Ancient history/Books_and_Authors_of_Ancient_India.pdf": 21,
+  "assets/Ancient history/Buddhism_-_I.pdf": 16,
+  "assets/Ancient history/Buddhism_-_II.pdf": 12,
+  "assets/Ancient history/Early_Vedic_Period.pdf": 10,
+  "assets/Ancient history/Guptas_Empire.pdf": 20,
+  "assets/Ancient history/Indo-Greek_Invasion.pdf": 8,
+  "assets/Ancient history/Indus_Valley_Civilization.pdf": 16,
+  "assets/Ancient history/Invasion_of_Alexander.pdf": 8,
+  "assets/Ancient history/Jainism.pdf": 16,
+  "assets/Ancient history/Later_Vedic_Period.pdf": 10,
+  "assets/Ancient history/Magadha_Dynasties.pdf": 8,
+  "assets/Ancient history/Mahajanpadas.pdf": 12,
+  "assets/Ancient history/Post_Gupta_-_Pallavas_and_Chalukyas.pdf": 9,
+  "assets/Ancient history/Post_Maurya_-_Kushanas.pdf": 9,
+  "assets/Ancient history/Post_Maurya_-_Sakas_and_Parthians.pdf": 10,
+  "assets/Ancient history/Post_Mauryan_-_Satvahanas.pdf": 9,
+  "assets/Ancient history/Post_Mauryan_-_Sungas,_Kanvas_and_Chedis.pdf": 9,
+  "assets/Ancient history/Rise_of_Magadha.pdf": 4,
+  "assets/Ancient history/Sangam_Age_-_Chola,_Chera_and_Pandyas.pdf": 17,
+  "assets/Ancient history/Stone_Age.pdf": 20,
+  "assets/Ancient history/The_Mauryan_Empire.pdf": 16,
+  "assets/Ancient history/The_Reign_of_Harshavardhana.pdf": 11,
+  "assets/Ancient history/Travelers_in_Ancient_India.pdf": 5,
+  "assets/Art and Culture/Architecture_-_Indo_-_Islamic_Architecture.pdf": 9,
+  "assets/Art and Culture/Architecture_-_Modern_Architecture.pdf": 17,
+  "assets/Art and Culture/Cave_Architecture.pdf": 14,
+  "assets/Art and Culture/Classical_Dances_of_India_-_I.pdf": 11,
+  "assets/Art and Culture/Classical_Dances_of_India_-_II.pdf": 13,
+  "assets/Art and Culture/Edicts_and_Inscriptions.pdf": 10,
+  "assets/Art and Culture/Fairs_and_Festivals.pdf": 15,
+  "assets/Art and Culture/Folk_Dances_of_States_-_I.pdf": 13,
+  "assets/Art and Culture/Indian_Handicrafts.pdf": 19,
+  "assets/Art and Culture/Indian_Paintings.pdf": 15,
+  "assets/Art and Culture/Indian_Sculpture_and_Pottery.pdf": 11,
+  "assets/Art and Culture/Indian_Theatre_Forms.pdf": 8,
+  "assets/Art and Culture/Language_and_Literature.pdf": 18,
+  "assets/Art and Culture/P_MUSIC.pdf": 11,
+  "assets/Art and Culture/Puppetry_in_India.pdf": 7,
+  "assets/Art and Culture/Religions_in_India.pdf": 9,
+  "assets/Art and Culture/Schools_of_Philosophy.pdf": 12,
+  "assets/Art and Culture/Tribal_Culture_in_India.pdf": 14,
+  "assets/Art and Culture/_Architecture_Temple(Parul).pdf": 16,
+  "assets/Indian Economy/Balance_of_Payments.pdf": 6,
+  "assets/Indian Economy/Banking_Sector_in_India.pdf": 9,
+  "assets/Indian Economy/Basic_Concepts_of_Macroeconomics(Part_2).pdf": 9,
+  "assets/Indian Economy/Basic_Concepts_of_Macroeconomics(_Part_1).pdf": 8,
+  "assets/Indian Economy/Basic_Concepts_of_Microeconomics.pdf": 11,
+  "assets/Indian Economy/Demography_.pdf": 21,
+  "assets/Indian Economy/Economic_Reforms_in_India.pdf": 13,
+  "assets/Indian Economy/FDI_FII_FPI.pdf": 20,
+  "assets/Indian Economy/Financial_Markets.pdf": 13,
+  "assets/Indian Economy/Fiscal_Policy.pdf": 6,
+  "assets/Indian Economy/Five_Year_Plan.pdf": 13,
+  "assets/Indian Economy/Food_Security.pdf": 16,
+  "assets/Indian Economy/Functions_of_Money.pdf": 8,
+  "assets/Indian Economy/Goods_and_Services_Tax.pdf": 14,
+  "assets/Indian Economy/Government_Budgeting.pdf": 12,
+  "assets/Indian Economy/Growth_and_Development.pdf": 5,
+  "assets/Indian Economy/Indian_Agriculture.pdf": 16,
+  "assets/Indian Economy/Indian_Industries.pdf": 15,
+  "assets/Indian Economy/Inflation_in_India.pdf": 11,
+  "assets/Indian Economy/Insurance_Sector_in_India.pdf": 10,
+  "assets/Indian Economy/Key_Features_of_Budget_2024-2025.pdf": 11,
+  "assets/Indian Economy/Market_Structures.pdf": 6,
+  "assets/Indian Economy/Methods_of_Calculating_National_Income.pdf": 7,
+  "assets/Indian Economy/Monetary_Policy.pdf": 8,
+  "assets/Indian Economy/Money_Supply.pdf": 9,
+  "assets/Indian Economy/National_Income.pdf": 5,
+  "assets/Indian Economy/Pension_System_in_India.pdf": 9,
+  "assets/Indian Economy/Planning_in_India.pdf": 15,
+  "assets/Indian Economy/Public_Sector_Enterprises.pdf": 9,
+  "assets/Indian Economy/Reserve_Bank_of_India.pdf": 9,
+  "assets/Indian Economy/Sectors_of_Indian_Economy.pdf": 14,
+  "assets/Indian Economy/Tax_Structure_in_India.pdf": 15,
+  "assets/Indian Economy/Theory_of_Consumer_Behaviour.pdf": 6,
+  "assets/Indian Economy/Unemployment_in_India.pdf": 11,
+  "assets/Indian Geography/Agriculture.pdf": 8,
+  "assets/Indian Geography/CENSUS_2011.pdf": 8,
+  "assets/Indian Geography/Communications.pdf": 13,
+  "assets/Indian Geography/Conventional_and_Non_Conventional_Resources (1).pdf": 6,
+  "assets/Indian Geography/Conventional_and_Non_Conventional_Resources.pdf": 6,
+  "assets/Indian Geography/Dams_in_India.pdf": 11,
+  "assets/Indian Geography/Drainage_System__Himalayan_River_System.pdf": 15,
+  "assets/Indian Geography/Drainage_System__Introduction.pdf": 8,
+  "assets/Indian Geography/Drainage_System__Peninsular_River_System_(East_Flowing_Rivers).pdf": 17,
+  "assets/Indian Geography/Energy_Resources_in_India_-_Nuclear_Power_plants.pdf": 13,
+  "assets/Indian Geography/Energy_Resources_in_India_-_Solar_and_Wind_Powerplants.pdf": 10,
+  "assets/Indian Geography/Energy_Resources_in_India_-_Thermal_and_Hydro_Power_Plants.pdf": 10,
+  "assets/Indian Geography/Geo_&_Tidal_Energy.pdf": 9,
+  "assets/Indian Geography/Important_Mountains_Passes_.pdf": 7,
+  "assets/Indian Geography/India__Location_and_Its_Size.pdf": 7,
+  "assets/Indian Geography/Indian_Climate_I.pdf": 11,
+  "assets/Indian Geography/Lakes_of_India.pdf": 6,
+  "assets/Indian Geography/Major_Crops_of_India.pdf": 7,
+  "assets/Indian Geography/Mineral_Resources_in_India_-_Coal,_Petroleum_and_Natural_Gas.pdf": 13,
+  "assets/Indian Geography/Mineral_Resources_in_India_-_Metallic.pdf": 12,
+  "assets/Indian Geography/Mineral_Resources_in_India_-_Non-Metallic.pdf": 7,
+  "assets/Indian Geography/National_Parks.pdf": 12,
+  "assets/Indian Geography/Natural_Vegetation_of_India.pdf": 7,
+  "assets/Indian Geography/Physiographic_Divisions_of_India_-_Coastal_Plains_and_Islands.pdf": 19,
+  "assets/Indian Geography/Physiographic_Divisions_of_India_-_Himalayas_and_Northern_Plains.pdf": 10,
+  "assets/Indian Geography/Physiographic_Divisions_of_India_-_Plateaus_and_Deserts.pdf": 18,
+  "assets/Indian Geography/Sobriquet.pdf": 7,
+  "assets/Indian Geography/Soils_in_India.pdf": 6,
+  "assets/Indian Geography/Transport-Roadways.pdf": 9,
+  "assets/Indian Geography/Transport_-_Airways_and_Pipelines.pdf": 9,
+  "assets/Indian Geography/Transport_-_Railways.pdf": 2,
+  "assets/Indian Geography/Transport_-_Waterways.pdf": 9,
+  "assets/Indian Geography/Waterfalls_In_India.pdf": 5,
+  "assets/Indian Geography/Wildlife.pdf": 9,
+  "assets/Indian Geography/Wildlife_Conservation_Efforts_and_Endangered_Species.pdf": 8,
+  "assets/Indian Geography/Wildlife_Sanctuaries_and_Biosphere_Reserves.pdf": 10,
+  "assets/Indian Polity/AMENDMENTS_OF_INDIAN_CONSTITUTION.pdf": 6,
+  "assets/Indian Polity/Budget_in_Parliament.pdf": 6,
+  "assets/Indian Polity/Central_Government_-_President.pdf": 12,
+  "assets/Indian Polity/Central_Government_-_Prime_Minister_and_Council_of_Ministers.pdf": 9,
+  "assets/Indian Polity/Central_Government_-_Vice-President.pdf": 7,
+  "assets/Indian Polity/Citizenship.pdf": 7,
+  "assets/Indian Polity/Constitutional_bodies.pdf": 22,
+  "assets/Indian Polity/Devices_of_parliamentary_proceedings.pdf": 7,
+  "assets/Indian Polity/Directive_Principles_of_State_Policies.pdf": 6,
+  "assets/Indian Polity/Elections.pdf": 13,
+  "assets/Indian Polity/Emergency_Provisions.pdf": 4,
+  "assets/Indian Polity/Fundamental_Duties_Article_(51A).pdf": 6,
+  "assets/Indian Polity/Fundamental_Rights_-_II_(Article_23-35).pdf": 9,
+  "assets/Indian Polity/Fundamental_Rights_-_I_(Article_12-22).pdf": 10,
+  "assets/Indian Polity/Historical_Background_of_Indian_Consitution.pdf": 6,
+  "assets/Indian Polity/Important_Constitutional_Cases.pdf": 12,
+  "assets/Indian Polity/Introduction_to_Parliament.pdf": 7,
+  "assets/Indian Polity/Judiciary_-_High_Court.pdf": 7,
+  "assets/Indian Polity/Judiciary_-_Sub-ordinate_Courts.pdf": 7,
+  "assets/Indian Polity/Judiciary_-_Supreme_Court.pdf": 8,
+  "assets/Indian Polity/Local-self_Government_-_Panchayati_Raj.pdf": 13,
+  "assets/Indian Polity/Local-self_Government_-_Urban_Local_Bodies.pdf": 7,
+  "assets/Indian Polity/MAKING_OF_THE_CONSTITUTION.pdf": 13,
+  "assets/Indian Polity/Non-Constitutional_bodies.pdf": 13,
+  "assets/Indian Polity/Parliament_-_Lok_Sabha.pdf": 10,
+  "assets/Indian Polity/Parliament_-_Rajya_Sabha.pdf": 9,
+  "assets/Indian Polity/Parliamentary_Committees.pdf": 9,
+  "assets/Indian Polity/Parts_of_Indian_Constitution.pdf": 7,
+  "assets/Indian Polity/Political_Parties_in_India.pdf": 6,
+  "assets/Indian Polity/Preamble.pdf": 5,
+  "assets/Indian Polity/Presiding_Officers_of_Indian_Parliament.pdf": 6,
+  "assets/Indian Polity/Pressure_Groups.pdf": 9,
+  "assets/Indian Polity/SCHEDULES_OF_INDIAN_CONSTITUTION.pdf": 4,
+  "assets/Indian Polity/Salient_Features_of_the_Constitution.pdf": 13,
+  "assets/Indian Polity/Sessions_of_parliament.pdf": 9,
+  "assets/Indian Polity/State_Government_-_Chief_Minister_&_State_Council_of_Ministers.pdf": 7,
+  "assets/Indian Polity/State_Government_-_Governor.pdf": 8,
+  "assets/Indian Polity/State_Legislature.pdf": 10,
+  "assets/Indian Polity/Union_Territories_of_India.pdf": 9,
+  "assets/Indian Polity/Union_and_its_Territory.pdf": 11,
+  "assets/Medieval History/Akbar.pdf": 8,
+  "assets/Medieval History/Aurangzeb.pdf": 6,
+  "assets/Medieval History/Babur.pdf": 7,
+  "assets/Medieval History/Bahmani_Kingdom.pdf": 9,
+  "assets/Medieval History/Bhakti_Movement_in_North_India.pdf": 7,
+  "assets/Medieval History/Bhakti_Movement_in_South_India.pdf": 13,
+  "assets/Medieval History/Books_and_Authors_(Medieval_History).pdf": 12,
+  "assets/Medieval History/Delhi_Sultanate_-_Syed_&_Lodhi.pdf": 7,
+  "assets/Medieval History/Delhi_Sultanate_-_Tughlaq_Dynasty.pdf": 9,
+  "assets/Medieval History/Humayun.pdf": 7,
+  "assets/Medieval History/Imperial_Cholas_.pdf": 8,
+  "assets/Medieval History/Islamic_Invasion.pdf": 16,
+  "assets/Medieval History/Jahangir.pdf": 6,
+  "assets/Medieval History/Khalji_Dynasty_(1290_to_1320).pdf": 12,
+  "assets/Medieval History/Maratha_Empire.pdf": 17,
+  "assets/Medieval History/Mughal_Dynasty_-_Sheshah_Suri_(Interregnum).pdf": 9,
+  "assets/Medieval History/Rajput_Rulers_-_Chandellas,_Paramaras_&_Solankis.pdf": 9,
+  "assets/Medieval History/Rajput_Rulers_-_Tomaras,_Chauhans_&_Gahadvalas.pdf": 7,
+  "assets/Medieval History/Rashtrakutas.pdf": 6,
+  "assets/Medieval History/Regional_Kingdoms_-_Kakatiyas,_Hoysalas_and_Yadavas.pdf": 17,
+  "assets/Medieval History/Saints_of_Maharashtra.pdf": 6,
+  "assets/Medieval History/Shah_Jahan.pdf": 7,
+  "assets/Medieval History/Sikhism.pdf": 14,
+  "assets/Medieval History/Slave_Dynasty_(1206–1290_CE).pdf": 10,
+  "assets/Medieval History/Sufism.pdf": 6,
+  "assets/Medieval History/Travellers_in_Medieval_India.pdf": 8,
+  "assets/Medieval History/Tripartite_Struggle.pdf": 6,
+  "assets/Medieval History/Vijaynagar_Empire.pdf": 16,
+  "assets/Mind Maps/Akbar_Reign.pdf": 1,
+  "assets/Mind Maps/Allauddin_Khalji.pdf": 1,
+  "assets/Mind Maps/Banking_System_of_India.pdf": 1,
+  "assets/Mind Maps/Basic_Concepts_of_Macroeconomics.pdf": 1,
+  "assets/Mind Maps/Basic_Concepts_of_Microeconomics.pdf": 11,
+  "assets/Mind Maps/Devices_of_Parliamentary_Proceedings.pdf": 7,
+  "assets/Mind Maps/Economic_Planning_in_India.pdf": 1,
+  "assets/Mind Maps/Environmental_Pollution.pdf": 1,
+  "assets/Mind Maps/Five_Year_Plans.pdf": 1,
+  "assets/Mind Maps/Fundamental_Duties.pdf": 1,
+  "assets/Mind Maps/Fundamental_Rights.pdf": 1,
+  "assets/Mind Maps/Inflation_in_India.pdf": 11,
+  "assets/Mind Maps/Khalji_Dynasty.pdf": 1,
+  "assets/Mind Maps/Layers_of_Earth.pdf": 1,
+  "assets/Mind Maps/Market_Structure.pdf": 1,
+  "assets/Mind Maps/Monetary_Policy_of_RBI.pdf": 1,
+  "assets/Mind Maps/Mughal_Empire.pdf": 1,
+  "assets/Mind Maps/National_Income.pdf": 5,
+  "assets/Mind Maps/Niti_Aayog.pdf": 1,
+  "assets/Mind Maps/Ocean_Currents.pdf": 1,
+  "assets/Mind Maps/Panchayati_Raj_Institutions.pdf": 1,
+  "assets/Mind Maps/Peasant_Movements.pdf": 11,
+  "assets/Mind Maps/Planning_Commission.pdf": 1,
+  "assets/Mind Maps/Reserve_Bank_of_India.pdf": 9,
+  "assets/Mind Maps/Soils_in_India.pdf": 6,
+  "assets/Mind Maps/Sources_Of_Indian_Constitution.pdf": 1,
+  "assets/Mind Maps/The_Revolt_of_1857.pdf": 1,
+  "assets/Mind Maps/Theory_of_Consumer_Behavior.pdf": 1,
+  "assets/Mind Maps/Tribal_Movements.pdf": 1,
+  "assets/Modern History/Anglo-Afghan_Wars_(1839-1919).pdf": 6,
+  "assets/Modern History/Anglo-Nepal_War.pdf": 5,
+  "assets/Modern History/Anglo-Sikh_Wars_(1845-1849).pdf": 5,
+  "assets/Modern History/Anglo_-_Mysore_Wars.pdf": 7,
+  "assets/Modern History/Anglo_Maratha_Wars.pdf": 5,
+  "assets/Modern History/British_East_India_Company.pdf": 7,
+  "assets/Modern History/Carnatic_Wars.pdf": 6,
+  "assets/Modern History/Caste_Movements.pdf": 4,
+  "assets/Modern History/Changes_in_Administration_After_the_Revolt_of_1857.pdf": 5,
+  "assets/Modern History/Civil_Uprisings.pdf": 10,
+  "assets/Modern History/Committees_and_Commissions.pdf": 11,
+  "assets/Modern History/Economic_Policies_of_Britishers.pdf": 5,
+  "assets/Modern History/Expansion_of_East_India_Company_-_Battle_of_Plassey_&_Buxar.pdf": 8,
+  "assets/Modern History/Freedom_Movement_(1939_-_1947).pdf": 12,
+  "assets/Modern History/Freedom_Movement_-_Extremist_Phase_(1905_-_1916).pdf": 12,
+  "assets/Modern History/Freedom_Movement_-_Moderate_Phase_(1885_-_1905).pdf": 12,
+  "assets/Modern History/Freedom_Movement__(1919_-_1929).pdf": 8,
+  "assets/Modern History/Freedom_Movement__(1930_-_1939).pdf": 9,
+  "assets/Modern History/Gandhi_Movements.pdf": 14,
+  "assets/Modern History/INC_SESSIONS.pdf": 11,
+  "assets/Modern History/Important_Acts_in_Modern_India.pdf": 9,
+  "assets/Modern History/Important_Books_and_Their_Author_of_Modern_India.pdf": 11,
+  "assets/Modern History/Important_Personalities_in_India.pdf": 15,
+  "assets/Modern History/India_After_Freedom.pdf": 16,
+  "assets/Modern History/Indian_National_Congress.pdf": 10,
+  "assets/Modern History/Newspapers,_Magazines,_and_Journals.pdf": 9,
+  "assets/Modern History/Peasant_Movements.pdf": 11,
+  "assets/Modern History/Political_Organisations_Before_Indian_National_Congress(INC).pdf": 6,
+  "assets/Modern History/Portuguese.pdf": 6,
+  "assets/Modern History/Rise_of_Regional_Kingdoms.pdf": 11,
+  "assets/Modern History/Socio-Religious_Reform_Movements.pdf": 13,
+  "assets/Modern History/The_Advent_of_Europeans.pdf": 10,
+  "assets/Modern History/Tribal_Revolts.pdf": 10,
+  "assets/Modern History/_GOVERNORS_AND_VICEROYS.pdf": 10,
+  "assets/Modern History/_The_Revolt_of_1857.pdf": 10,
+  "assets/Quantitative Aptitude/Algebra.pdf": 10,
+  "assets/Quantitative Aptitude/Average.pdf": 3,
+  "assets/Quantitative Aptitude/Co-ordinate_Geometry.pdf": 6,
+  "assets/Quantitative Aptitude/Elementary_Statistics.pdf": 4,
+  "assets/Quantitative Aptitude/Geometry.pdf": 38,
+  "assets/Quantitative Aptitude/Interest.pdf": 5,
+  "assets/Quantitative Aptitude/Logarithm.pdf": 3,
+  "assets/Quantitative Aptitude/Mensuration_2D.pdf": 5,
+  "assets/Quantitative Aptitude/Mensuration_3D.pdf": 4,
+  "assets/Quantitative Aptitude/Number_System.pdf": 5,
+  "assets/Quantitative Aptitude/Permutation_&_Combination.pdf": 4,
+  "assets/Quantitative Aptitude/Probability.pdf": 5,
+  "assets/Quantitative Aptitude/Profit_&_Loss.pdf": 3,
+  "assets/Quantitative Aptitude/Progression.pdf": 4,
+  "assets/Quantitative Aptitude/Ratio_&_Proportion.pdf": 3,
+  "assets/Quantitative Aptitude/Set_Theory_&_Venn_Diagram.pdf": 4,
+  "assets/Quantitative Aptitude/Simplification.pdf": 4,
+  "assets/Quantitative Aptitude/Speed_Time_&_Distance.pdf": 6,
+  "assets/Quantitative Aptitude/Trigonometry.pdf": 12,
+  "assets/Static GK/Awards_and_Honours_-_Film_and_Entertainment.pdf": 17,
+  "assets/Static GK/Awards_and_Honours_-_Gallantry.pdf": 10,
+  "assets/Static GK/Awards_and_Honours_-_International_Awards_I.pdf": 12,
+  "assets/Static GK/Awards_and_Honours_-_International_Awards_II.pdf": 12,
+  "assets/Static GK/Awards_and_Honours_-_National_Awards.pdf": 9,
+  "assets/Static GK/Awards_and_Honours_-_Nobel_Awards.pdf": 10,
+  "assets/Static GK/Awards_and_Honours_-_Sports.pdf": 11,
+  "assets/Static GK/Capitals_and_Currency.pdf": 10,
+  "assets/Static GK/Days_and_Events_(JAN-JUNE).pdf": 6,
+  "assets/Static GK/Days_and_Events_-_(JULY_-_DECEMBER).pdf": 7,
+  "assets/Static GK/Defence_Exercises.pdf": 14,
+  "assets/Static GK/Defence_Forces.pdf": 10,
+  "assets/Static GK/Defence_Technology.pdf": 9,
+  "assets/Static GK/Famous_Personalities.pdf": 12,
+  "assets/Static GK/Famous_Places_in_India.pdf": 15,
+  "assets/Static GK/First_in_India.pdf": 11,
+  "assets/Static GK/First_in_the_World.pdf": 6,
+  "assets/Static GK/Government_Policies_and_Schemes-III.pdf": 4,
+  "assets/Static GK/Government_Policies_and_Schemes-_I.pdf": 4,
+  "assets/Static GK/Government_Policies_and_Schemes-_II.pdf": 5,
+  "assets/Static GK/Government_Policies_and_Schemes_(April_2023-_March_2024).pdf": 10,
+  "assets/Static GK/Important_Books_and_Authors_-_International.pdf": 10,
+  "assets/Static GK/Important_Books_and_Authors_-_National.pdf": 11,
+  "assets/Static GK/Important_Committees.pdf": 8,
+  "assets/Static GK/Important_Scientific_Inventions.pdf": 17,
+  "assets/Static GK/Intelligence_agencies_.pdf": 16,
+  "assets/Static GK/National_Organization.pdf": 11,
+  "assets/Static GK/National_Symbols.pdf": 8,
+  "assets/Static GK/Research_Centres_of_India.pdf": 7,
+  "assets/Static GK/Sports_-_Commonwealth.pdf": 6,
+  "assets/Static GK/Sports_-_Olympics.pdf": 16,
+  "assets/Static GK/Sports_Personalities-_I.pdf": 9,
+  "assets/Static GK/Sports_Personalities_II.pdf": 13,
+  "assets/Static GK/Sports_Terminology.pdf": 11,
+  "assets/Static GK/States_and_Capitals.pdf": 18,
+  "assets/Static GK/Superlatives_(India).pdf": 15,
+  "assets/Static GK/Superlatives_(World).pdf": 12,
+  "assets/Static GK/UNESCO_World_Heritage_Sites_in_India.pdf": 19,
+  "assets/Static GK/United_Nations.pdf": 8,
+  "assets/Static GK/World_Organisations.pdf": 21,
+  "assets/World Geography/Biogeography__Soil.pdf": 5,
+  "assets/World Geography/Climatology-_Air_Masses_and_Cyclone.pdf": 8,
+  "assets/World Geography/Climatology-_Pressure_and_Winds.pdf": 14,
+  "assets/World Geography/Climatology__Atmospheric_Circulation.pdf": 6,
+  "assets/World Geography/Climatology__Composition_and_Structure_of_Atmosphere.pdf": 7,
+  "assets/World Geography/Climatology__Koeppe_N’s_Scheme_Of_Classification_Of_Climate.pdf": 6,
+  "assets/World Geography/Climatology__Solar_Radiation,_Heat_Balance_and_Temperature.pdf": 13,
+  "assets/World Geography/Climatology__Water_in_the_Atmosphere.pdf": 5,
+  "assets/World Geography/Climatology__World_Climate.pdf": 22,
+  "assets/World Geography/Demography.pdf": 11,
+  "assets/World Geography/Demography_.pdf": 21,
+  "assets/World Geography/Geological_Time_Scale.pdf": 5,
+  "assets/World Geography/Geomorphology.pdf": 11,
+  "assets/World Geography/Geomorphology__Earthquake.pdf": 12,
+  "assets/World Geography/Geomorphology__Interior_of_the_Earth.pdf": 4,
+  "assets/World Geography/Geomorphology__Landforms(Arid).pdf": 6,
+  "assets/World Geography/Geomorphology__Landforms(Glacial).pdf": 5,
+  "assets/World Geography/Geomorphology__Landforms(Karst).pdf": 5,
+  "assets/World Geography/Geomorphology__Landforms(Marine).pdf": 4,
+  "assets/World Geography/Geomorphology__River.pdf": 11,
+  "assets/World Geography/Latitudes_&_Longitudes.pdf": 7,
+  "assets/World Geography/Mapping.pdf": 6,
+  "assets/World Geography/Mapping_-_Lakes.pdf": 7,
+  "assets/World Geography/Mapping_-_Plateaus.pdf": 6,
+  "assets/World Geography/Mapping_-_Rivers.pdf": 7,
+  "assets/World Geography/Mapping_-_Waterfalls.pdf": 6,
+  "assets/World Geography/Mineral_and_Energy_Resources.pdf": 13,
+  "assets/World Geography/Motions_of_the_Earth.pdf": 6,
+  "assets/World Geography/Oceanography_Movements_of_Ocean_Water.pdf": 10,
+  "assets/World Geography/Oceanography_Ocean_Currents.pdf": 12,
+  "assets/World Geography/Oceanography__Oceans.pdf": 7,
+  "assets/World Geography/Stars_and_The_Solar_System.pdf": 23
+};
+
 const homeView = document.getElementById("homeView");
 const listView = document.getElementById("listView");
 const backBtn = document.getElementById("backBtn");
@@ -1220,6 +1558,7 @@ const activeFolderKey = "active-folder";
 const bookmarksKey = "study-bookmarks";
 let favoritesOnly = false;
 let bookmarks = new Set();
+let suppressHistorySync = false;
 
 const statusIcon = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1291,10 +1630,32 @@ const getFolderById = (id) => library.find((folder) => folder.id === id);
 const getFolderCount = (folder) =>
   folder.sections.reduce((sum, section) => sum + section.items.length, 0);
 
+const getFolderPageCount = (folder) =>
+  folder.sections.reduce(
+    (sum, section) =>
+      sum + section.items.reduce((sectionSum, item) => sectionSum + (pageCounts[item.file] || 0), 0),
+    0
+  );
+
+const syncHistoryState = (folderId, { replace = false } = {}) => {
+  if (suppressHistorySync) return;
+
+  const state = folderId ? { folderId } : { home: true };
+  const url = folderId ? `#${folderId}` : `${window.location.pathname}${window.location.search}`;
+
+  if (replace) {
+    window.history.replaceState(state, "", url);
+    return;
+  }
+
+  window.history.pushState(state, "", url);
+};
+
 const renderFolders = () => {
   folderList.innerHTML = "";
   library.forEach((folder) => {
     const count = getFolderCount(folder);
+    const pageCount = getFolderPageCount(folder);
     const card = document.createElement("button");
     card.className = "folder-card";
     card.type = "button";
@@ -1303,7 +1664,7 @@ const renderFolders = () => {
       <div class="folder-icon">${folderIcon}</div>
       <div class="folder-info">
         <h2>${folder.title}</h2>
-        <p>${count} PDFs</p>
+        <p>${count} PDFs • ${pageCount} Pages</p>
       </div>
       <div class="folder-chevron">${chevronIcon}</div>
     `;
@@ -1351,9 +1712,12 @@ const renderSections = (query = "") => {
 
     filteredItems.forEach((item) => {
       const isAvailable = item.available !== false;
-      const fileUrl = isAvailable ? encodeURI(item.file) : "#";
       const availabilityLabel = isAvailable ? `${statusIcon} Read` : "Not available";
       const isBookmarked = bookmarks.has(item.file);
+      const pageCount = pageCounts[item.file];
+      const pageCountLabel = Number.isInteger(pageCount)
+        ? `${pageCount} ${pageCount === 1 ? "Page" : "Pages"}`
+        : "";
       const card = document.createElement("article");
       card.className = "card";
       card.innerHTML = `
@@ -1361,7 +1725,7 @@ const renderSections = (query = "") => {
         <div>
           <h4 class="card-title">${item.title}</h4>
           <div class="card-meta">
-            <span class="badge">PRO MAX</span>
+            ${pageCountLabel ? `<span class="badge">${pageCountLabel}</span>` : ""}
             <span class="status ${isAvailable ? "" : "status-unavailable"}">${availabilityLabel}</span>
           </div>
         </div>
@@ -1423,6 +1787,10 @@ const renderSections = (query = "") => {
 };
 
 const openFolder = (folderId) => {
+  openFolderView(folderId, { updateHistory: true });
+};
+
+const openFolderView = (folderId, { updateHistory = false, replaceHistory = false } = {}) => {
   const folder = getFolderById(folderId);
   if (!folder) return;
   activeFolderId = folderId;
@@ -1431,18 +1799,26 @@ const openFolder = (folderId) => {
   listView.classList.add("active");
   backBtn.disabled = false;
   const count = getFolderCount(folder);
+  const pageCount = getFolderPageCount(folder);
   pageTitle.textContent = folder.title;
-  pageSubtitle.textContent = `${count} PDFs`;
+  pageSubtitle.textContent = `${count} PDFs • ${pageCount} Pages`;
   renderSections(searchInput.value);
+  if (updateHistory) {
+    syncHistoryState(folderId, { replace: replaceHistory });
+  }
 };
 
-const goHome = () => {
+const goHome = ({ updateHistory = false, replaceHistory = false } = {}) => {
   listView.classList.remove("active");
   homeView.classList.add("active");
   backBtn.disabled = true;
+  activeFolderId = null;
   pageTitle.textContent = "Study Library";
   pageSubtitle.textContent = "Pick a folder";
   localStorage.removeItem(activeFolderKey);
+  if (updateHistory) {
+    syncHistoryState(null, { replace: replaceHistory });
+  }
 };
 
 folderList.addEventListener("click", (event) => {
@@ -1451,7 +1827,7 @@ folderList.addEventListener("click", (event) => {
   openFolder(card.dataset.folderId);
 });
 
-backBtn.addEventListener("click", goHome);
+backBtn.addEventListener("click", () => goHome({ updateHistory: true }));
 backBtn.disabled = true;
 
 searchInput.addEventListener("input", (e) => renderSections(e.target.value));
@@ -1500,9 +1876,24 @@ renderFolders();
 loadBookmarks();
 initTheme();
 
+window.addEventListener("popstate", (event) => {
+  suppressHistorySync = true;
+  const folderId = event.state?.folderId;
+
+  if (folderId && getFolderById(folderId)) {
+    openFolderView(folderId);
+  } else {
+    goHome();
+  }
+
+  suppressHistorySync = false;
+});
+
+syncHistoryState(null, { replace: true });
+
 const savedFolder = localStorage.getItem(activeFolderKey);
 if (savedFolder && getFolderById(savedFolder)) {
-  openFolder(savedFolder);
+  openFolderView(savedFolder, { updateHistory: true });
 }
 
 requestAnimationFrame(() => {
