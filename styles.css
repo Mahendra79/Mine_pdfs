@@ -126,6 +126,13 @@ body {
   transform: scale(0.96);
 }
 
+.icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 main {
   padding: 10px 18px 0;
 }
@@ -187,6 +194,27 @@ main {
 .folder-chevron {
   margin-left: auto;
   color: var(--muted);
+}
+
+.folder-bookmark-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-soft);
+  color: var(--accent-3);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.folder-bookmark-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.theme-dark .folder-bookmark-badge {
+  color: #93c5fd;
 }
 
 .search-row {
@@ -492,9 +520,29 @@ main {
   font-size: 0.9rem;
 }
 
+.empty-state p {
+  margin: 0 0 10px;
+}
+
+.link-button {
+  border: none;
+  background: none;
+  color: var(--accent-3);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px;
+}
+
+.theme-dark .link-button {
+  color: #93c5fd;
+}
+
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
+input:focus-visible,
+[role="button"]:focus-visible {
   outline: 2px solid var(--accent-3);
   outline-offset: 3px;
   border-radius: 10px;
@@ -525,7 +573,19 @@ input:focus-visible {
     max-width: 760px;
   }
 
-  .cards {
+  .cards,
+  .folder-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .app {
+    max-width: 1040px;
+  }
+
+  .cards,
+  .folder-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

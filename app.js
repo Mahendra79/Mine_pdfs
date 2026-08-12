@@ -492,19 +492,18 @@ const library = [
       {
         title: "Demography",
         items: [
-          { title: "Demography", file: "assets/World Geography/Demography.pdf" },
-          { title: "Demography", file: "assets/World Geography/Demography_.pdf" },
+          { title: "Demography — Concise", file: "assets/World Geography/Demography.pdf" },
+          { title: "Demography — Detailed", file: "assets/World Geography/Demography_.pdf" },
         ],
       },
       {
         title: "Mapping",
         items: [
-          { title: "Mountains", file: "assets/World Geography/Mapping.pdf" },
+          { title: "Mountains & Deserts", file: "assets/World Geography/Mapping.pdf" },
           { title: "Plateaus", file: "assets/World Geography/Mapping_-_Plateaus.pdf" },
           { title: "Rivers", file: "assets/World Geography/Mapping_-_Rivers.pdf" },
           { title: "Lakes", file: "assets/World Geography/Mapping_-_Lakes.pdf" },
           { title: "Waterfalls", file: "assets/World Geography/Mapping_-_Waterfalls.pdf" },
-          { title: "Deserts", file: "assets/World Geography/Mapping.pdf" },
         ],
       },
     ],
@@ -603,15 +602,6 @@ const library = [
             file: "assets/Indian Geography/Energy_Resources_in_India_-_Nuclear_Power_plants.pdf",
           },
           { title: "Geo, Tidal", file: "assets/Indian Geography/Geo_&_Tidal_Energy.pdf" },
-        ],
-      },
-      {
-        title: "Conventional and Non Conventional Resources",
-        items: [
-          {
-            title: "Conventional and Non Conventional Resources",
-            file: "assets/Indian Geography/Conventional_and_Non_Conventional_Resources (1).pdf",
-          },
         ],
       },
       {
@@ -1280,7 +1270,6 @@ const pageCounts = {
   "assets/Indian Geography/Agriculture.pdf": 8,
   "assets/Indian Geography/CENSUS_2011.pdf": 8,
   "assets/Indian Geography/Communications.pdf": 13,
-  "assets/Indian Geography/Conventional_and_Non_Conventional_Resources (1).pdf": 6,
   "assets/Indian Geography/Conventional_and_Non_Conventional_Resources.pdf": 6,
   "assets/Indian Geography/Dams_in_India.pdf": 11,
   "assets/Indian Geography/Drainage_System__Himalayan_River_System.pdf": 15,
@@ -1550,6 +1539,11 @@ const themeToggle = document.getElementById("themeToggle");
 const folderList = document.getElementById("folderList");
 const favoritesToggle = document.getElementById("favoritesToggle");
 const emptyState = document.getElementById("emptyState");
+const clearFiltersBtn = document.getElementById("clearFiltersBtn");
+const homeSearchInput = document.getElementById("homeSearchInput");
+const homeResultsEl = document.getElementById("homeResults");
+const homeEmptyState = document.getElementById("homeEmptyState");
+const homeClearSearch = document.getElementById("homeClearSearch");
 
 let collapsed = false;
 let activeFolderId = null;
@@ -1637,6 +1631,90 @@ const getFolderPageCount = (folder) =>
     0
   );
 
+const getFolderBookmarkCount = (folder) =>
+  folder.sections.reduce(
+    (sum, section) => sum + section.items.filter((item) => bookmarks.has(item.file)).length,
+    0
+  );
+
+const toggleBookmark = (item, btn) => {
+  const isNowBookmarked = !bookmarks.has(item.file);
+  if (isNowBookmarked) {
+    bookmarks.add(item.file);
+  } else {
+    bookmarks.delete(item.file);
+  }
+  saveBookmarks();
+  btn.classList.toggle("active", isNowBookmarked);
+  btn.setAttribute("aria-pressed", String(isNowBookmarked));
+  btn.setAttribute("aria-label", `${isNowBookmarked ? "Remove" : "Add"} bookmark for ${item.title}`);
+
+  if (favoritesOnly && activeFolderId) {
+    renderSections(searchInput.value);
+  }
+  if (homeSearchInput.value.trim()) {
+    renderHomeSearch(homeSearchInput.value);
+  }
+  renderFolders();
+};
+
+const buildCard = (item) => {
+  const isAvailable = item.available !== false;
+  const isBookmarked = bookmarks.has(item.file);
+  const pageCount = pageCounts[item.file];
+  const pageCountLabel = Number.isInteger(pageCount)
+    ? `${pageCount} ${pageCount === 1 ? "Page" : "Pages"}`
+    : "";
+  const availabilityLabel = isAvailable ? `${statusIcon} Available` : "Not available";
+
+  const card = document.createElement("article");
+  card.className = "card";
+  if (!isAvailable) card.classList.add("card-unavailable");
+  card.dataset.file = item.file;
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", isAvailable ? "0" : "-1");
+  card.setAttribute("aria-label", `Open ${item.title}${isAvailable ? "" : " (not available)"}`);
+  if (!isAvailable) card.setAttribute("aria-disabled", "true");
+  card.innerHTML = `
+    <div class="card-icon">${bookIcon}</div>
+    <div>
+      <h4 class="card-title">${item.title}</h4>
+      <div class="card-meta">
+        ${pageCountLabel ? `<span class="badge">${pageCountLabel}</span>` : ""}
+        <span class="status ${isAvailable ? "" : "status-unavailable"}">${availabilityLabel}</span>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button type="button" class="bookmark ${isBookmarked ? "active" : ""}" aria-pressed="${isBookmarked}" aria-label="${isBookmarked ? "Remove" : "Add"} bookmark for ${item.title}">${bookmarkIcon}</button>
+    </div>
+  `;
+
+  const openItem = () => {
+    if (!isAvailable) return;
+    window.open(encodeURI(item.file), "_blank", "noopener");
+  };
+
+  card.addEventListener("click", (event) => {
+    if (event.target.closest(".bookmark")) return;
+    openItem();
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.target.closest(".bookmark")) return;
+    if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+      event.preventDefault();
+      openItem();
+    }
+  });
+
+  card.querySelector(".bookmark").addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleBookmark(item, event.currentTarget);
+  });
+
+  return card;
+};
+
 const syncHistoryState = (folderId, { replace = false } = {}) => {
   if (suppressHistorySync) return;
 
@@ -1656,6 +1734,7 @@ const renderFolders = () => {
   library.forEach((folder) => {
     const count = getFolderCount(folder);
     const pageCount = getFolderPageCount(folder);
+    const bookmarkCount = getFolderBookmarkCount(folder);
     const card = document.createElement("button");
     card.className = "folder-card";
     card.type = "button";
@@ -1666,10 +1745,60 @@ const renderFolders = () => {
         <h2>${folder.title}</h2>
         <p>${count} PDFs • ${pageCount} Pages</p>
       </div>
+      ${bookmarkCount > 0 ? `<span class="folder-bookmark-badge">${bookmarkIcon}${bookmarkCount}</span>` : ""}
       <div class="folder-chevron">${chevronIcon}</div>
     `;
     folderList.appendChild(card);
   });
+};
+
+const renderHomeSearch = (query) => {
+  const q = query.trim().toLowerCase();
+
+  if (!q) {
+    homeResultsEl.innerHTML = "";
+    homeResultsEl.classList.add("hidden");
+    homeEmptyState.classList.add("hidden");
+    folderList.classList.remove("hidden");
+    return;
+  }
+
+  folderList.classList.add("hidden");
+  homeResultsEl.innerHTML = "";
+  let totalMatches = 0;
+
+  library.forEach((folder) => {
+    const groups = folder.sections
+      .map((section) => {
+        const sectionMatch = section.title.toLowerCase().includes(q);
+        const items = sectionMatch
+          ? section.items
+          : section.items.filter((item) => item.title.toLowerCase().includes(q));
+        return items;
+      })
+      .filter((items) => items.length > 0);
+
+    if (!groups.length) return;
+
+    const folderBlock = document.createElement("div");
+    folderBlock.className = "section";
+    folderBlock.innerHTML = `<div class="section-header"><h3>${folder.title}</h3></div>`;
+
+    const cards = document.createElement("div");
+    cards.className = "cards";
+    groups.forEach((items) => {
+      items.forEach((item) => {
+        cards.appendChild(buildCard(item));
+        totalMatches += 1;
+      });
+    });
+
+    folderBlock.appendChild(cards);
+    homeResultsEl.appendChild(folderBlock);
+  });
+
+  homeResultsEl.classList.toggle("hidden", totalMatches === 0);
+  homeEmptyState.classList.toggle("hidden", totalMatches > 0);
 };
 
 const renderSections = (query = "") => {
@@ -1701,43 +1830,18 @@ const renderSections = (query = "") => {
     sectionHeader.className = "section-header";
     sectionHeader.innerHTML = `
       <h3>${section.title} <span class="muted">• ${sectionCount}</span></h3>
-      <button type="button" data-index="${index}">
+      <button type="button" data-index="${index}" aria-expanded="${!collapsed}" aria-controls="section-cards-${index}">
         ${collapsed ? "Expand" : "Collapse"}
       </button>
     `;
 
     const cards = document.createElement("div");
     cards.className = "cards";
+    cards.id = `section-cards-${index}`;
     if (collapsed) cards.classList.add("hidden");
 
     filteredItems.forEach((item) => {
-      const isAvailable = item.available !== false;
-      const availabilityLabel = isAvailable ? `${statusIcon} Read` : "Not available";
-      const isBookmarked = bookmarks.has(item.file);
-      const pageCount = pageCounts[item.file];
-      const pageCountLabel = Number.isInteger(pageCount)
-        ? `${pageCount} ${pageCount === 1 ? "Page" : "Pages"}`
-        : "";
-      const card = document.createElement("article");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="card-icon">${bookIcon}</div>
-        <div>
-          <h4 class="card-title">${item.title}</h4>
-          <div class="card-meta">
-            ${pageCountLabel ? `<span class="badge">${pageCountLabel}</span>` : ""}
-            <span class="status ${isAvailable ? "" : "status-unavailable"}">${availabilityLabel}</span>
-          </div>
-        </div>
-        <div class="card-actions">
-          <button class="bookmark ${isBookmarked ? "active" : ""}" aria-label="Bookmark">${bookmarkIcon}</button>
-        </div>
-      `;
-      if (!isAvailable) {
-        card.classList.add("card-unavailable");
-      }
-      card.dataset.file = item.file;
-      cards.appendChild(card);
+      cards.appendChild(buildCard(item));
     });
 
     sectionEl.appendChild(sectionHeader);
@@ -1749,37 +1853,9 @@ const renderSections = (query = "") => {
   sectionsEl.querySelectorAll(".section-header button").forEach((btn) => {
     btn.addEventListener("click", () => {
       const cards = btn.closest(".section").querySelector(".cards");
-      cards.classList.toggle("hidden");
-      btn.textContent = cards.classList.contains("hidden") ? "Expand" : "Collapse";
-    });
-  });
-
-  sectionsEl.querySelectorAll(".bookmark").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const card = btn.closest(".card");
-      const file = card?.dataset.file;
-      if (!file) return;
-      if (bookmarks.has(file)) {
-        bookmarks.delete(file);
-        btn.classList.remove("active");
-      } else {
-        bookmarks.add(file);
-        btn.classList.add("active");
-      }
-      saveBookmarks();
-      if (favoritesOnly) {
-        renderSections(searchInput.value);
-      }
-    });
-  });
-
-  sectionsEl.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("click", (event) => {
-      if (event.target.closest(".bookmark")) return;
-      if (card.classList.contains("card-unavailable")) return;
-      const file = card.dataset.file;
-      if (!file) return;
-      window.open(encodeURI(file), "_blank", "noopener");
+      const nowHidden = cards.classList.toggle("hidden");
+      btn.textContent = nowHidden ? "Expand" : "Collapse";
+      btn.setAttribute("aria-expanded", String(!nowHidden));
     });
   });
 
@@ -1832,6 +1908,16 @@ backBtn.disabled = true;
 
 searchInput.addEventListener("input", (e) => renderSections(e.target.value));
 
+clearFiltersBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  if (favoritesOnly) {
+    favoritesOnly = false;
+    favoritesToggle.classList.remove("active");
+  }
+  renderSections("");
+  searchInput.focus();
+});
+
 toggleAll.addEventListener("click", () => {
   collapsed = !collapsed;
   toggleAll.textContent = collapsed ? "Expand all" : "Collapse all";
@@ -1844,14 +1930,25 @@ favoritesToggle.addEventListener("click", () => {
   renderSections(searchInput.value);
 });
 
+homeSearchInput.addEventListener("input", (e) => renderHomeSearch(e.target.value));
+
+homeClearSearch.addEventListener("click", () => {
+  homeSearchInput.value = "";
+  renderHomeSearch("");
+  homeSearchInput.focus();
+});
+
 const setTheme = (theme) => {
   const root = document.documentElement;
   root.classList.add("no-transitions");
   // Force reflow so the class takes effect before theme swap
   void root.offsetHeight;
-  root.classList.toggle("theme-dark", theme === "dark");
+  const isDark = theme === "dark";
+  root.classList.toggle("theme-dark", isDark);
   localStorage.setItem(themeKey, theme);
-  themeToggle.innerHTML = theme === "dark" ? moonIcon : sunIcon;
+  themeToggle.innerHTML = isDark ? moonIcon : sunIcon;
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeToggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
   requestAnimationFrame(() => {
     root.classList.remove("no-transitions");
   });
@@ -1872,8 +1969,8 @@ themeToggle.addEventListener("click", () => {
   setTheme(isDark ? "light" : "dark");
 });
 
-renderFolders();
 loadBookmarks();
+renderFolders();
 initTheme();
 
 window.addEventListener("popstate", (event) => {
