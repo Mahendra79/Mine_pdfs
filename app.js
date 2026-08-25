@@ -431,29 +431,29 @@ const library = [
     sections: [
       {
         title: "Geological Time Scale",
-        items: [{ title: "Geological Time Scale", file: "assets/World Geography/Geological_Time_Scale.pdf" }],
+        items: [{ title: "Geological Time Scale", file: "assets/World Geography/Geological_Time_Scale.pdf", important: true }],
       },
       {
         title: "Stars and The Solar System",
-        items: [{ title: "Stars and The Solar System", file: "assets/World Geography/Stars_and_The_Solar_System.pdf" }],
+        items: [{ title: "Stars and The Solar System", file: "assets/World Geography/Stars_and_The_Solar_System.pdf", important: true }],
       },
       {
         title: "Latitude & Longitudes",
-        items: [{ title: "Latitude & Longitudes", file: "assets/World Geography/Latitudes_&_Longitudes.pdf" }],
+        items: [{ title: "Latitude & Longitudes", file: "assets/World Geography/Latitudes_&_Longitudes.pdf", important: true }],
       },
       {
         title: "Motion of the Earth",
-        items: [{ title: "Motion of the Earth", file: "assets/World Geography/Motions_of_the_Earth.pdf" }],
+        items: [{ title: "Motion of the Earth", file: "assets/World Geography/Motions_of_the_Earth.pdf", important: true }],
       },
       {
         title: "Geomorphology",
         items: [
-          { title: "Introduction", file: "assets/World Geography/Geomorphology.pdf" },
+          { title: "Introduction", file: "assets/World Geography/Geomorphology.pdf", important: true },
           { title: "Plate Tectonics", file: "assets/World Geography/Geomorphology__Plate_Tectonics.pdf", available: false },
-          { title: "Interior of the Earth", file: "assets/World Geography/Geomorphology__Interior_of_the_Earth.pdf" },
+          { title: "Interior of the Earth", file: "assets/World Geography/Geomorphology__Interior_of_the_Earth.pdf", important: true },
           { title: "Rocks", file: "assets/World Geography/Geomorphology__Rocks.pdf", available: false },
           { title: "Volcano", file: "assets/World Geography/Geomorphology__Volcano.pdf", available: false },
-          { title: "Earthquake", file: "assets/World Geography/Geomorphology__Earthquake.pdf" },
+          { title: "Earthquake", file: "assets/World Geography/Geomorphology__Earthquake.pdf", important: true },
           { title: "Landforms (River)", file: "assets/World Geography/Geomorphology__River.pdf" },
           { title: "Landforms (Karst)", file: "assets/World Geography/Geomorphology__Landforms(Karst).pdf" },
           { title: "Landforms (Marine)", file: "assets/World Geography/Geomorphology__Landforms(Marine).pdf" },
@@ -467,55 +467,56 @@ const library = [
           {
             title: "Composition and Structure of Atmosphere",
             file: "assets/World Geography/Climatology__Composition_and_Structure_of_Atmosphere.pdf",
+            important: true,
           },
           {
             title: "Solar Radiation, Heat Balance and Temperature",
             file: "assets/World Geography/Climatology__Solar_Radiation,_Heat_Balance_and_Temperature.pdf",
           },
-          { title: "Atmospheric Circulation", file: "assets/World Geography/Climatology__Atmospheric_Circulation.pdf" },
-          { title: "World Climate", file: "assets/World Geography/Climatology__World_Climate.pdf" },
+          { title: "Atmospheric Circulation", file: "assets/World Geography/Climatology__Atmospheric_Circulation.pdf", important: true },
+          { title: "World Climate", file: "assets/World Geography/Climatology__World_Climate.pdf", important: true },
           {
             title: "Koppen’s Scheme Of Classification Of Climate",
             file: "assets/World Geography/Climatology__Koeppe_N’s_Scheme_Of_Classification_Of_Climate.pdf",
           },
-          { title: "Pressure and Winds", file: "assets/World Geography/Climatology-_Pressure_and_Winds.pdf" },
-          { title: "Air Masses and Cyclone", file: "assets/World Geography/Climatology-_Air_Masses_and_Cyclone.pdf" },
+          { title: "Pressure and Winds", file: "assets/World Geography/Climatology-_Pressure_and_Winds.pdf", important: true },
+          { title: "Air Masses and Cyclone", file: "assets/World Geography/Climatology-_Air_Masses_and_Cyclone.pdf", important: true },
           { title: "Water in the Atmosphere", file: "assets/World Geography/Climatology__Water_in_the_Atmosphere.pdf" },
         ],
       },
       {
         title: "Oceanography",
         items: [
-          { title: "Water (Oceans)", file: "assets/World Geography/Oceanography__Oceans.pdf" },
-          { title: "Movements of Ocean Water", file: "assets/World Geography/Oceanography_Movements_of_Ocean_Water.pdf" },
-          { title: "Ocean Currents", file: "assets/World Geography/Oceanography_Ocean_Currents.pdf" },
+          { title: "Water (Oceans)", file: "assets/World Geography/Oceanography__Oceans.pdf", important: true },
+          { title: "Movements of Ocean Water", file: "assets/World Geography/Oceanography_Movements_of_Ocean_Water.pdf", important: true },
+          { title: "Ocean Currents", file: "assets/World Geography/Oceanography_Ocean_Currents.pdf", important: true },
         ],
       },
       {
         title: "Biogeography",
-        items: [{ title: "Biogeography", file: "assets/World Geography/Biogeography__Soil.pdf" }],
+        items: [{ title: "Biogeography", file: "assets/World Geography/Biogeography__Soil.pdf", important: true }],
       },
       {
         title: "Mineral and Energy Resources",
         items: [
-          { title: "Mineral and Energy Resources", file: "assets/World Geography/Mineral_and_Energy_Resources.pdf" },
+          { title: "Mineral and Energy Resources", file: "assets/World Geography/Mineral_and_Energy_Resources.pdf", important: true },
         ],
       },
       {
         title: "Demography",
         items: [
-          { title: "Demography — Concise", file: "assets/World Geography/Demography.pdf" },
-          { title: "Demography — Detailed", file: "assets/World Geography/Demography_.pdf" },
+          { title: "Demography — Concise", file: "assets/World Geography/Demography.pdf", important: true },
+          { title: "Demography — Detailed", file: "assets/World Geography/Demography_.pdf", important: true },
         ],
       },
       {
         title: "Mapping",
         items: [
-          { title: "Mountains & Deserts", file: "assets/World Geography/Mapping.pdf" },
+          { title: "Mountains & Deserts", file: "assets/World Geography/Mapping.pdf", important: true },
           { title: "Plateaus", file: "assets/World Geography/Mapping_-_Plateaus.pdf" },
-          { title: "Rivers", file: "assets/World Geography/Mapping_-_Rivers.pdf" },
-          { title: "Lakes", file: "assets/World Geography/Mapping_-_Lakes.pdf" },
-          { title: "Waterfalls", file: "assets/World Geography/Mapping_-_Waterfalls.pdf" },
+          { title: "Rivers", file: "assets/World Geography/Mapping_-_Rivers.pdf", important: true },
+          { title: "Lakes", file: "assets/World Geography/Mapping_-_Lakes.pdf", important: true },
+          { title: "Waterfalls", file: "assets/World Geography/Mapping_-_Waterfalls.pdf", important: true },
         ],
       },
     ],
@@ -530,57 +531,61 @@ const library = [
           {
             title: "Physiographic Divisions of India - Himalayas and Northern Plains",
             file: "assets/Indian Geography/Physiographic_Divisions_of_India_-_Himalayas_and_Northern_Plains.pdf",
+            important: true,
           },
           {
             title: "Physiographic Divisions of India - Plateaus and Desert",
             file: "assets/Indian Geography/Physiographic_Divisions_of_India_-_Plateaus_and_Deserts.pdf",
+            important: true,
           },
           {
             title: "Physiographic Divisions of India - Coastal Plains and Islands",
             file: "assets/Indian Geography/Physiographic_Divisions_of_India_-_Coastal_Plains_and_Islands.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "India Location and Its Size",
-        items: [{ title: "Latitudes & Longitudes", file: "assets/Indian Geography/India__Location_and_Its_Size.pdf" }],
+        items: [{ title: "Latitudes & Longitudes", file: "assets/Indian Geography/India__Location_and_Its_Size.pdf", important: true }],
       },
       {
         title: "Drainage System",
         items: [
-          { title: "Introduction", file: "assets/Indian Geography/Drainage_System__Introduction.pdf" },
-          { title: "Himalayan River System", file: "assets/Indian Geography/Drainage_System__Himalayan_River_System.pdf" },
+          { title: "Introduction", file: "assets/Indian Geography/Drainage_System__Introduction.pdf", important: true },
+          { title: "Himalayan River System", file: "assets/Indian Geography/Drainage_System__Himalayan_River_System.pdf", important: true },
           {
             title: "Peninsular River System",
             file: "assets/Indian Geography/Drainage_System__Peninsular_River_System_(East_Flowing_Rivers).pdf",
+            important: true,
           },
-          { title: "Lakes of India", file: "assets/Indian Geography/Lakes_of_India.pdf" },
-          { title: "Dams of India", file: "assets/Indian Geography/Dams_in_India.pdf" },
-          { title: "Waterfalls of India", file: "assets/Indian Geography/Waterfalls_In_India.pdf" },
+          { title: "Lakes of India", file: "assets/Indian Geography/Lakes_of_India.pdf", important: true },
+          { title: "Dams of India", file: "assets/Indian Geography/Dams_in_India.pdf", important: true },
+          { title: "Waterfalls of India", file: "assets/Indian Geography/Waterfalls_In_India.pdf", important: true },
         ],
       },
       {
         title: "Indian Climate",
-        items: [{ title: "Indian Climate", file: "assets/Indian Geography/Indian_Climate_I.pdf" }],
+        items: [{ title: "Indian Climate", file: "assets/Indian Geography/Indian_Climate_I.pdf", important: true }],
       },
       {
         title: "Soils of India",
-        items: [{ title: "Soils of India", file: "assets/Indian Geography/Soils_in_India.pdf" }],
+        items: [{ title: "Soils of India", file: "assets/Indian Geography/Soils_in_India.pdf", important: true }],
       },
       {
         title: "Agriculture",
         items: [
-          { title: "Agriculture", file: "assets/Indian Geography/Agriculture.pdf" },
-          { title: "Major Crops of India", file: "assets/Indian Geography/Major_Crops_of_India.pdf" },
+          { title: "Agriculture", file: "assets/Indian Geography/Agriculture.pdf", important: true },
+          { title: "Major Crops of India", file: "assets/Indian Geography/Major_Crops_of_India.pdf", important: true },
         ],
       },
       {
         title: "Transport",
         items: [
-          { title: "Roadways", file: "assets/Indian Geography/Transport-Roadways.pdf" },
-          { title: "Railways", file: "assets/Indian Geography/Transport_-_Railways.pdf" },
-          { title: "Waterways", file: "assets/Indian Geography/Transport_-_Waterways.pdf" },
-          { title: "Airways and Pipeline", file: "assets/Indian Geography/Transport_-_Airways_and_Pipelines.pdf" },
+          { title: "Roadways", file: "assets/Indian Geography/Transport-Roadways.pdf", important: true },
+          { title: "Railways", file: "assets/Indian Geography/Transport_-_Railways.pdf", important: true },
+          { title: "Waterways", file: "assets/Indian Geography/Transport_-_Waterways.pdf", important: true },
+          { title: "Airways and Pipeline", file: "assets/Indian Geography/Transport_-_Airways_and_Pipelines.pdf", important: true },
         ],
       },
       {
@@ -590,8 +595,8 @@ const library = [
       {
         title: "Mineral Resources in India",
         items: [
-          { title: "Metallic", file: "assets/Indian Geography/Mineral_Resources_in_India_-_Metallic.pdf" },
-          { title: "Non-Metallic", file: "assets/Indian Geography/Mineral_Resources_in_India_-_Non-Metallic.pdf" },
+          { title: "Metallic", file: "assets/Indian Geography/Mineral_Resources_in_India_-_Metallic.pdf", important: true },
+          { title: "Non-Metallic", file: "assets/Indian Geography/Mineral_Resources_in_India_-_Non-Metallic.pdf", important: true },
         ],
       },
       {
@@ -600,14 +605,17 @@ const library = [
           {
             title: "Conventional and Non Conventional Resources",
             file: "assets/Indian Geography/Conventional_and_Non_Conventional_Resources.pdf",
+            important: true,
           },
           {
             title: "Coal, Petroleum and Natural Gas",
             file: "assets/Indian Geography/Mineral_Resources_in_India_-_Coal,_Petroleum_and_Natural_Gas.pdf",
+            important: true,
           },
           {
             title: "Thermal and Hydro Powerplants",
             file: "assets/Indian Geography/Energy_Resources_in_India_-_Thermal_and_Hydro_Power_Plants.pdf",
+            important: true,
           },
           {
             title: "Nuclear Power plants",
@@ -622,36 +630,39 @@ const library = [
           {
             title: "Solar and Wind Powerplants",
             file: "assets/Indian Geography/Energy_Resources_in_India_-_Solar_and_Wind_Powerplants.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Important Mountains & Passes",
-        items: [{ title: "Important Mountains & Passes", file: "assets/Indian Geography/Important_Mountains_Passes_.pdf" }],
+        items: [{ title: "Important Mountains & Passes", file: "assets/Indian Geography/Important_Mountains_Passes_.pdf", important: true }],
       },
       {
         title: "Natural Vegetation and Wildlife of India",
         items: [
-          { title: "Natural Vegetation of India", file: "assets/Indian Geography/Natural_Vegetation_of_India.pdf" },
-          { title: "Wildlife", file: "assets/Indian Geography/Wildlife.pdf" },
+          { title: "Natural Vegetation of India", file: "assets/Indian Geography/Natural_Vegetation_of_India.pdf", important: true },
+          { title: "Wildlife", file: "assets/Indian Geography/Wildlife.pdf", important: true },
           {
             title: "Wildlife Conservation Efforts and Endangered Species",
             file: "assets/Indian Geography/Wildlife_Conservation_Efforts_and_Endangered_Species.pdf",
+            important: true,
           },
-          { title: "National Parks", file: "assets/Indian Geography/National_Parks.pdf" },
+          { title: "National Parks", file: "assets/Indian Geography/National_Parks.pdf", important: true },
           {
             title: "Wildlife Sanctuaries and Biosphere Reserves",
             file: "assets/Indian Geography/Wildlife_Sanctuaries_and_Biosphere_Reserves.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Census Data",
-        items: [{ title: "Census Data", file: "assets/Indian Geography/CENSUS_2011.pdf" }],
+        items: [{ title: "Census Data", file: "assets/Indian Geography/CENSUS_2011.pdf", important: true }],
       },
       {
         title: "Sobriquet",
-        items: [{ title: "Sobriquet", file: "assets/Indian Geography/Sobriquet.pdf" }],
+        items: [{ title: "Sobriquet", file: "assets/Indian Geography/Sobriquet.pdf", important: true }],
       },
     ],
   },
@@ -690,7 +701,7 @@ const library = [
       },
       {
         title: "National Income",
-        items: [{ title: "National Income", file: "assets/Indian Economy/National_Income.pdf" }],
+        items: [{ title: "National Income", file: "assets/Indian Economy/National_Income.pdf", important: true }],
       },
       {
         title: "Methods of Calculating National Income",
@@ -703,59 +714,59 @@ const library = [
       },
       {
         title: "Growth and Development",
-        items: [{ title: "Growth and Development", file: "assets/Indian Economy/Growth_and_Development.pdf" }],
+        items: [{ title: "Growth and Development", file: "assets/Indian Economy/Growth_and_Development.pdf", important: true }],
       },
       {
         title: "Planning in India",
-        items: [{ title: "Planning in India", file: "assets/Indian Economy/Planning_in_India.pdf" }],
+        items: [{ title: "Planning in India", file: "assets/Indian Economy/Planning_in_India.pdf", important: true }],
       },
       {
         title: "Five Year Plans",
-        items: [{ title: "Five Year Plans", file: "assets/Indian Economy/Five_Year_Plan.pdf" }],
+        items: [{ title: "Five Year Plans", file: "assets/Indian Economy/Five_Year_Plan.pdf", important: true }],
       },
       {
         title: "Economic Reforms in India",
-        items: [{ title: "Economic Reforms in India", file: "assets/Indian Economy/Economic_Reforms_in_India.pdf" }],
+        items: [{ title: "Economic Reforms in India", file: "assets/Indian Economy/Economic_Reforms_in_India.pdf", important: true }],
       },
       {
         title: "Reserve Bank of India",
-        items: [{ title: "Reserve Bank of India", file: "assets/Indian Economy/Reserve_Bank_of_India.pdf" }],
+        items: [{ title: "Reserve Bank of India", file: "assets/Indian Economy/Reserve_Bank_of_India.pdf", important: true }],
       },
       {
         title: "Monetary Policy",
-        items: [{ title: "Monetary Policy", file: "assets/Indian Economy/Monetary_Policy.pdf" }],
+        items: [{ title: "Monetary Policy", file: "assets/Indian Economy/Monetary_Policy.pdf", important: true }],
       },
       {
         title: "Functions of Money",
-        items: [{ title: "Functions of Money", file: "assets/Indian Economy/Functions_of_Money.pdf" }],
+        items: [{ title: "Functions of Money", file: "assets/Indian Economy/Functions_of_Money.pdf", important: true }],
       },
       {
         title: "Money Supply",
-        items: [{ title: "Money Supply", file: "assets/Indian Economy/Money_Supply.pdf" }],
+        items: [{ title: "Money Supply", file: "assets/Indian Economy/Money_Supply.pdf", important: true }],
       },
       {
         title: "Banking Sector in India",
-        items: [{ title: "Banking Sector in India", file: "assets/Indian Economy/Banking_Sector_in_India.pdf" }],
+        items: [{ title: "Banking Sector in India", file: "assets/Indian Economy/Banking_Sector_in_India.pdf", important: true }],
       },
       {
         title: "Financial Markets",
-        items: [{ title: "Financial Markets", file: "assets/Indian Economy/Financial_Markets.pdf" }],
+        items: [{ title: "Financial Markets", file: "assets/Indian Economy/Financial_Markets.pdf", important: true }],
       },
       {
         title: "Inflation in India",
-        items: [{ title: "Inflation in India", file: "assets/Indian Economy/Inflation_in_India.pdf" }],
+        items: [{ title: "Inflation in India", file: "assets/Indian Economy/Inflation_in_India.pdf", important: true }],
       },
       {
         title: "Unemployment in India",
-        items: [{ title: "Unemployment in India", file: "assets/Indian Economy/Unemployment_in_India.pdf" }],
+        items: [{ title: "Unemployment in India", file: "assets/Indian Economy/Unemployment_in_India.pdf", important: true }],
       },
       {
         title: "Fiscal Policy",
-        items: [{ title: "Fiscal Policy", file: "assets/Indian Economy/Fiscal_Policy.pdf" }],
+        items: [{ title: "Fiscal Policy", file: "assets/Indian Economy/Fiscal_Policy.pdf", important: true }],
       },
       {
         title: "Government Budgeting",
-        items: [{ title: "Government Budgeting", file: "assets/Indian Economy/Government_Budgeting.pdf" }],
+        items: [{ title: "Government Budgeting", file: "assets/Indian Economy/Government_Budgeting.pdf", important: true }],
       },
       {
         title: "Key Features of Budget 2024-2025",
@@ -763,56 +774,57 @@ const library = [
           {
             title: "Key Features of Budget 2024-2025",
             file: "assets/Indian Economy/Key_Features_of_Budget_2024-2025.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Tax Structure in India",
-        items: [{ title: "Tax Structure in India", file: "assets/Indian Economy/Tax_Structure_in_India.pdf" }],
+        items: [{ title: "Tax Structure in India", file: "assets/Indian Economy/Tax_Structure_in_India.pdf", important: true }],
       },
       {
         title: "Goods and Services Tax",
-        items: [{ title: "Goods and Services Tax", file: "assets/Indian Economy/Goods_and_Services_Tax.pdf" }],
+        items: [{ title: "Goods and Services Tax", file: "assets/Indian Economy/Goods_and_Services_Tax.pdf", important: true }],
       },
       {
         title: "Balance of Payment",
-        items: [{ title: "Balance of Payment", file: "assets/Indian Economy/Balance_of_Payments.pdf" }],
+        items: [{ title: "Balance of Payment", file: "assets/Indian Economy/Balance_of_Payments.pdf", important: true }],
       },
       {
         title: "FDI FII FPI",
-        items: [{ title: "FDI FII FPI", file: "assets/Indian Economy/FDI_FII_FPI.pdf" }],
+        items: [{ title: "FDI FII FPI", file: "assets/Indian Economy/FDI_FII_FPI.pdf", important: true }],
       },
       {
         title: "Indian Industries",
-        items: [{ title: "Indian Industries", file: "assets/Indian Economy/Indian_Industries.pdf" }],
+        items: [{ title: "Indian Industries", file: "assets/Indian Economy/Indian_Industries.pdf", important: true }],
       },
       {
         title: "Public Sector Enterprises",
-        items: [{ title: "Public Sector Enterprises", file: "assets/Indian Economy/Public_Sector_Enterprises.pdf" }],
+        items: [{ title: "Public Sector Enterprises", file: "assets/Indian Economy/Public_Sector_Enterprises.pdf", important: true }],
       },
       {
         title: "Sectors of Indian Economy",
-        items: [{ title: "Sectors of Indian Economy", file: "assets/Indian Economy/Sectors_of_Indian_Economy.pdf" }],
+        items: [{ title: "Sectors of Indian Economy", file: "assets/Indian Economy/Sectors_of_Indian_Economy.pdf", important: true }],
       },
       {
         title: "Insurance Sector in India",
-        items: [{ title: "Insurance Sector in India", file: "assets/Indian Economy/Insurance_Sector_in_India.pdf" }],
+        items: [{ title: "Insurance Sector in India", file: "assets/Indian Economy/Insurance_Sector_in_India.pdf", important: true }],
       },
       {
         title: "Pension System in India",
-        items: [{ title: "Pension System in India", file: "assets/Indian Economy/Pension_System_in_India.pdf" }],
+        items: [{ title: "Pension System in India", file: "assets/Indian Economy/Pension_System_in_India.pdf", important: true }],
       },
       {
         title: "Indian Agriculture",
-        items: [{ title: "Indian Agriculture", file: "assets/Indian Economy/Indian_Agriculture.pdf" }],
+        items: [{ title: "Indian Agriculture", file: "assets/Indian Economy/Indian_Agriculture.pdf", important: true }],
       },
       {
         title: "Food Security",
-        items: [{ title: "Food Security", file: "assets/Indian Economy/Food_Security.pdf" }],
+        items: [{ title: "Food Security", file: "assets/Indian Economy/Food_Security.pdf", important: true }],
       },
       {
         title: "Demography",
-        items: [{ title: "Demography", file: "assets/Indian Economy/Demography_.pdf" }],
+        items: [{ title: "Demography", file: "assets/Indian Economy/Demography_.pdf", important: true }],
       },
     ],
   },
