@@ -1684,6 +1684,7 @@ const buildCard = (item) => {
       <h4 class="card-title">${item.title}</h4>
       <div class="card-meta">
         ${pageCountLabel ? `<span class="badge">${pageCountLabel}</span>` : ""}
+        ${item.important ? `<span class="badge" style="background:#f59e0b;color:#1f2937;">★ Imp</span>` : ""}
         <span class="status ${isAvailable ? "" : "status-unavailable"}">${availabilityLabel}</span>
       </div>
     </div>
