@@ -956,12 +956,13 @@ const library = [
           {
             title: "Historical Background",
             file: "assets/Indian Polity/Historical_Background_of_Indian_Consitution.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Making of the Constitution",
-        items: [{ title: "Making of the Constitution", file: "assets/Indian Polity/MAKING_OF_THE_CONSTITUTION.pdf" }],
+        items: [{ title: "Making of the Constitution", file: "assets/Indian Polity/MAKING_OF_THE_CONSTITUTION.pdf", important: true }],
       },
       {
         title: "Salient Features of the Constitution",
@@ -969,20 +970,21 @@ const library = [
           {
             title: "Salient Features of the Constitution",
             file: "assets/Indian Polity/Salient_Features_of_the_Constitution.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Preamble",
-        items: [{ title: "Preamble", file: "assets/Indian Polity/Preamble.pdf" }],
+        items: [{ title: "Preamble", file: "assets/Indian Polity/Preamble.pdf", important: true }],
       },
       {
         title: "Parts of the Constitution",
-        items: [{ title: "Parts of the Constitution", file: "assets/Indian Polity/Parts_of_Indian_Constitution.pdf" }],
+        items: [{ title: "Parts of the Constitution", file: "assets/Indian Polity/Parts_of_Indian_Constitution.pdf", important: true }],
       },
       {
         title: "Schedules of the Constitution",
-        items: [{ title: "Schedules of the Constitution", file: "assets/Indian Polity/SCHEDULES_OF_INDIAN_CONSTITUTION.pdf" }],
+        items: [{ title: "Schedules of the Constitution", file: "assets/Indian Polity/SCHEDULES_OF_INDIAN_CONSTITUTION.pdf", important: true }],
       },
       {
         title: "Union and Its Territory",
@@ -990,13 +992,13 @@ const library = [
       },
       {
         title: "Citizenship",
-        items: [{ title: "Citizenship", file: "assets/Indian Polity/Citizenship.pdf" }],
+        items: [{ title: "Citizenship", file: "assets/Indian Polity/Citizenship.pdf", important: true }],
       },
       {
         title: "Fundamental Rights",
         items: [
-          { title: "Fundamental Rights - I", file: "assets/Indian Polity/Fundamental_Rights_-_I_(Article_12-22).pdf" },
-          { title: "Fundamental Rights - II", file: "assets/Indian Polity/Fundamental_Rights_-_II_(Article_23-35).pdf" },
+          { title: "Fundamental Rights - I", file: "assets/Indian Polity/Fundamental_Rights_-_I_(Article_12-22).pdf", important: true },
+          { title: "Fundamental Rights - II", file: "assets/Indian Polity/Fundamental_Rights_-_II_(Article_23-35).pdf", important: true },
         ],
       },
       {
@@ -1005,16 +1007,17 @@ const library = [
           {
             title: "Directive Principles of State Policy",
             file: "assets/Indian Polity/Directive_Principles_of_State_Policies.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Fundamental Duties",
-        items: [{ title: "Fundamental Duties", file: "assets/Indian Polity/Fundamental_Duties_Article_(51A).pdf" }],
+        items: [{ title: "Fundamental Duties", file: "assets/Indian Polity/Fundamental_Duties_Article_(51A).pdf", important: true }],
       },
       {
         title: "Amendments of the Constitution",
-        items: [{ title: "Amendments of the Constitution", file: "assets/Indian Polity/AMENDMENTS_OF_INDIAN_CONSTITUTION.pdf" }],
+        items: [{ title: "Amendments of the Constitution", file: "assets/Indian Polity/AMENDMENTS_OF_INDIAN_CONSTITUTION.pdf", important: true }],
       },
       {
         title: "Important cases related to the Constitution",
@@ -1027,7 +1030,7 @@ const library = [
       },
       {
         title: "Emergency Provisions",
-        items: [{ title: "Emergency Provisions", file: "assets/Indian Polity/Emergency_Provisions.pdf" }],
+        items: [{ title: "Emergency Provisions", file: "assets/Indian Polity/Emergency_Provisions.pdf", important: true }],
       },
       {
         title: "Parliament",
@@ -1036,8 +1039,8 @@ const library = [
           { title: "Presiding Officers in Parliament", file: "assets/Indian Polity/Presiding_Officers_of_Indian_Parliament.pdf" },
           { title: "Sessions of Parliament", file: "assets/Indian Polity/Sessions_of_parliament.pdf" },
           { title: "Devices of Parliamentary Proceedings", file: "assets/Indian Polity/Devices_of_parliamentary_proceedings.pdf" },
-          { title: "Lok Sabha", file: "assets/Indian Polity/Parliament_-_Lok_Sabha.pdf" },
-          { title: "Rajya Sabha", file: "assets/Indian Polity/Parliament_-_Rajya_Sabha.pdf" },
+          { title: "Lok Sabha", file: "assets/Indian Polity/Parliament_-_Lok_Sabha.pdf", important: true },
+          { title: "Rajya Sabha", file: "assets/Indian Polity/Parliament_-_Rajya_Sabha.pdf", important: true },
           { title: "Annual Financial Statement", file: "assets/Indian Polity/Budget_in_Parliament.pdf" },
           { title: "Parliamentary Committees", file: "assets/Indian Polity/Parliamentary_Committees.pdf" },
         ],
@@ -1045,9 +1048,9 @@ const library = [
       {
         title: "Central Government",
         items: [
-          { title: "President", file: "assets/Indian Polity/Central_Government_-_President.pdf" },
-          { title: "Vice-President", file: "assets/Indian Polity/Central_Government_-_Vice-President.pdf" },
-          { title: "Prime Minister and Council of Ministers", file: "assets/Indian Polity/Central_Government_-_Prime_Minister_and_Council_of_Ministers.pdf" },
+          { title: "President", file: "assets/Indian Polity/Central_Government_-_President.pdf", important: true },
+          { title: "Vice-President", file: "assets/Indian Polity/Central_Government_-_Vice-President.pdf", important: true },
+          { title: "Prime Minister and Council of Ministers", file: "assets/Indian Polity/Central_Government_-_Prime_Minister_and_Council_of_Ministers.pdf", important: true },
         ],
       },
       {
@@ -1057,22 +1060,22 @@ const library = [
       {
         title: "State Government",
         items: [
-          { title: "Governor", file: "assets/Indian Polity/State_Government_-_Governor.pdf" },
-          { title: "Chief Minister & State Council of Ministers", file: "assets/Indian Polity/State_Government_-_Chief_Minister_&_State_Council_of_Ministers.pdf" },
+          { title: "Governor", file: "assets/Indian Polity/State_Government_-_Governor.pdf", important: true },
+          { title: "Chief Minister & State Council of Ministers", file: "assets/Indian Polity/State_Government_-_Chief_Minister_&_State_Council_of_Ministers.pdf", important: true },
         ],
       },
       {
         title: "Judiciary",
         items: [
-          { title: "Supreme Court", file: "assets/Indian Polity/Judiciary_-_Supreme_Court.pdf" },
-          { title: "High Court", file: "assets/Indian Polity/Judiciary_-_High_Court.pdf" },
+          { title: "Supreme Court", file: "assets/Indian Polity/Judiciary_-_Supreme_Court.pdf", important: true },
+          { title: "High Court", file: "assets/Indian Polity/Judiciary_-_High_Court.pdf", important: true },
           { title: "Sub-ordinate Courts", file: "assets/Indian Polity/Judiciary_-_Sub-ordinate_Courts.pdf" },
         ],
       },
       {
         title: "Local-self Government",
         items: [
-          { title: "Panchayati Raj", file: "assets/Indian Polity/Local-self_Government_-_Panchayati_Raj.pdf" },
+          { title: "Panchayati Raj", file: "assets/Indian Polity/Local-self_Government_-_Panchayati_Raj.pdf", important: true },
           { title: "Urban Local Bodies", file: "assets/Indian Polity/Local-self_Government_-_Urban_Local_Bodies.pdf" },
         ],
       },
@@ -1082,7 +1085,7 @@ const library = [
       },
       {
         title: "Constitutional bodies",
-        items: [{ title: "Constitutional bodies", file: "assets/Indian Polity/Constitutional_bodies.pdf" }],
+        items: [{ title: "Constitutional bodies", file: "assets/Indian Polity/Constitutional_bodies.pdf", important: true }],
       },
       {
         title: "Non-Constitutional bodies",
@@ -1094,7 +1097,7 @@ const library = [
       },
       {
         title: "Elections",
-        items: [{ title: "Elections", file: "assets/Indian Polity/Elections.pdf" }],
+        items: [{ title: "Elections", file: "assets/Indian Polity/Elections.pdf", important: true }],
       },
       {
         title: "Pressure Groups",
