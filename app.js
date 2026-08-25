@@ -5,7 +5,7 @@ const library = [
     sections: [
       {
         title: "Stone Age",
-        items: [{ title: "Stone Age", file: "assets/Ancient history/Stone_Age.pdf" }],
+        items: [{ title: "Stone Age", file: "assets/Ancient history/Stone_Age.pdf", important: true }],
       },
       {
         title: "Indus Valley Civilization",
@@ -13,42 +13,43 @@ const library = [
           {
             title: "Indus Valley Civilization",
             file: "assets/Ancient history/Indus_Valley_Civilization.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Vedic Period",
         items: [
-          { title: "Early Vedic Period", file: "assets/Ancient history/Early_Vedic_Period.pdf" },
-          { title: "Later Vedic Period", file: "assets/Ancient history/Later_Vedic_Period.pdf" },
+          { title: "Early Vedic Period", file: "assets/Ancient history/Early_Vedic_Period.pdf", important: true },
+          { title: "Later Vedic Period", file: "assets/Ancient history/Later_Vedic_Period.pdf", important: true },
         ],
       },
       {
         title: "Buddhism",
         items: [
-          { title: "Buddhism I", file: "assets/Ancient history/Buddhism_-_I.pdf" },
-          { title: "Buddhism II", file: "assets/Ancient history/Buddhism_-_II.pdf" },
+          { title: "Buddhism I", file: "assets/Ancient history/Buddhism_-_I.pdf", important: true },
+          { title: "Buddhism II", file: "assets/Ancient history/Buddhism_-_II.pdf", important: true },
         ],
       },
       {
         title: "Jainism",
-        items: [{ title: "Jainism", file: "assets/Ancient history/Jainism.pdf" }],
+        items: [{ title: "Jainism", file: "assets/Ancient history/Jainism.pdf", important: true }],
       },
       {
         title: "Mahajanapadas",
-        items: [{ title: "Mahajanapadas", file: "assets/Ancient history/Mahajanpadas.pdf" }],
+        items: [{ title: "Mahajanapadas", file: "assets/Ancient history/Mahajanpadas.pdf", important: true }],
       },
       {
         title: "Magadh",
         items: [
-          { title: "Rise of Magadh", file: "assets/Ancient history/Rise_of_Magadha.pdf" },
-          { title: "Magadh Dynasties", file: "assets/Ancient history/Magadha_Dynasties.pdf" },
-          { title: "Invasion of Alexander", file: "assets/Ancient history/Invasion_of_Alexander.pdf" },
+          { title: "Rise of Magadh", file: "assets/Ancient history/Rise_of_Magadha.pdf", important: true },
+          { title: "Magadh Dynasties", file: "assets/Ancient history/Magadha_Dynasties.pdf", important: true },
+          { title: "Invasion of Alexander", file: "assets/Ancient history/Invasion_of_Alexander.pdf", important: true },
         ],
       },
       {
         title: "Mauryan Empire",
-        items: [{ title: "Mauryan Empire", file: "assets/Ancient history/The_Mauryan_Empire.pdf" }],
+        items: [{ title: "Mauryan Empire", file: "assets/Ancient history/The_Mauryan_Empire.pdf", important: true }],
       },
       {
         title: "Indo-Greek Invasion",
@@ -61,12 +62,12 @@ const library = [
             title: "Post Mauryan - Sungas, Kanvas and Chedis",
             file: "assets/Ancient history/Post_Mauryan_-_Sungas,_Kanvas_and_Chedis.pdf",
           },
-          { title: "Post Mauryan - Satavahanas", file: "assets/Ancient history/Post_Mauryan_-_Satvahanas.pdf" },
+          { title: "Post Mauryan - Satavahanas", file: "assets/Ancient history/Post_Mauryan_-_Satvahanas.pdf", important: true },
           {
             title: "Post Mauryan - Sakas and Parthians",
             file: "assets/Ancient history/Post_Maurya_-_Sakas_and_Parthians.pdf",
           },
-          { title: "Post Mauryan - Kushanas", file: "assets/Ancient history/Post_Maurya_-_Kushanas.pdf" },
+          { title: "Post Mauryan - Kushanas", file: "assets/Ancient history/Post_Maurya_-_Kushanas.pdf", important: true },
         ],
       },
       {
@@ -75,20 +76,22 @@ const library = [
           {
             title: "Sangam Age - Chola, Chera and Pandyas",
             file: "assets/Ancient history/Sangam_Age_-_Chola,_Chera_and_Pandyas.pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Gupta Empire",
-        items: [{ title: "Gupta Empire", file: "assets/Ancient history/Guptas_Empire.pdf" }],
+        items: [{ title: "Gupta Empire", file: "assets/Ancient history/Guptas_Empire.pdf", important: true }],
       },
       {
         title: "Post Gupta",
         items: [
-          { title: "Post Gupta - Harshavardhan", file: "assets/Ancient history/The_Reign_of_Harshavardhana.pdf" },
+          { title: "Post Gupta - Harshavardhan", file: "assets/Ancient history/The_Reign_of_Harshavardhana.pdf", important: true },
           {
             title: "Post Gupta - Pallavas and Chalukyas",
             file: "assets/Ancient history/Post_Gupta_-_Pallavas_and_Chalukyas.pdf",
+            important: true,
           },
         ],
       },
@@ -98,8 +101,9 @@ const library = [
           {
             title: "Books and Authors of Ancient India",
             file: "assets/Ancient history/Books_and_Authors_of_Ancient_India.pdf",
+            important: true,
           },
-          { title: "Travellers in Ancient India", file: "assets/Ancient history/Travelers_in_Ancient_India.pdf" },
+          { title: "Travellers in Ancient India", file: "assets/Ancient history/Travelers_in_Ancient_India.pdf", important: true },
         ],
       },
     ],
@@ -111,9 +115,9 @@ const library = [
       {
         title: "Regional Kingdoms",
         items: [
-          { title: "Tripartite Struggle", file: "assets/Medieval History/Tripartite_Struggle.pdf" },
-          { title: "Rashtrakutas", file: "assets/Medieval History/Rashtrakutas.pdf" },
-          { title: "Imperial Cholas", file: "assets/Medieval History/Imperial_Cholas_.pdf" },
+          { title: "Tripartite Struggle", file: "assets/Medieval History/Tripartite_Struggle.pdf", important: true },
+          { title: "Rashtrakutas", file: "assets/Medieval History/Rashtrakutas.pdf", important: true },
+          { title: "Imperial Cholas", file: "assets/Medieval History/Imperial_Cholas_.pdf", important: true },
           {
             title: "Rajput Rulers - Chandellas, Paramaras & Solankis",
             file: "assets/Medieval History/Rajput_Rulers_-_Chandellas,_Paramaras_&_Solankis.pdf",
@@ -130,65 +134,66 @@ const library = [
       },
       {
         title: "Islamic Invasion",
-        items: [{ title: "Islamic Invasion", file: "assets/Medieval History/Islamic_Invasion.pdf" }],
+        items: [{ title: "Islamic Invasion", file: "assets/Medieval History/Islamic_Invasion.pdf", important: true }],
       },
       {
         title: "Sufism",
-        items: [{ title: "Sufism", file: "assets/Medieval History/Sufism.pdf" }],
+        items: [{ title: "Sufism", file: "assets/Medieval History/Sufism.pdf", important: true }],
       },
       {
         title: "Bhakti Movement",
         items: [
-          { title: "Bhakti Movement in North India", file: "assets/Medieval History/Bhakti_Movement_in_North_India.pdf" },
-          { title: "Bhakti Movement in South India", file: "assets/Medieval History/Bhakti_Movement_in_South_India.pdf" },
-          { title: "Saints of Maharashtra", file: "assets/Medieval History/Saints_of_Maharashtra.pdf" },
+          { title: "Bhakti Movement in North India", file: "assets/Medieval History/Bhakti_Movement_in_North_India.pdf", important: true },
+          { title: "Bhakti Movement in South India", file: "assets/Medieval History/Bhakti_Movement_in_South_India.pdf", important: true },
+          { title: "Saints of Maharashtra", file: "assets/Medieval History/Saints_of_Maharashtra.pdf", important: true },
         ],
       },
       {
         title: "Delhi Sultanate",
         items: [
-          { title: "Delhi Sultanate - Slave Dynasty", file: "assets/Medieval History/Slave_Dynasty_(1206–1290_CE).pdf" },
-          { title: "Delhi Sultanate - Khalji Dynasty", file: "assets/Medieval History/Khalji_Dynasty_(1290_to_1320).pdf" },
-          { title: "Delhi Sultanate - Tughlaq Dynasty", file: "assets/Medieval History/Delhi_Sultanate_-_Tughlaq_Dynasty.pdf" },
-          { title: "Delhi Sultanate - Sayyid & Lodhi", file: "assets/Medieval History/Delhi_Sultanate_-_Syed_&_Lodhi.pdf" },
+          { title: "Delhi Sultanate - Slave Dynasty", file: "assets/Medieval History/Slave_Dynasty_(1206–1290_CE).pdf", important: true },
+          { title: "Delhi Sultanate - Khalji Dynasty", file: "assets/Medieval History/Khalji_Dynasty_(1290_to_1320).pdf", important: true },
+          { title: "Delhi Sultanate - Tughlaq Dynasty", file: "assets/Medieval History/Delhi_Sultanate_-_Tughlaq_Dynasty.pdf", important: true },
+          { title: "Delhi Sultanate - Sayyid & Lodhi", file: "assets/Medieval History/Delhi_Sultanate_-_Syed_&_Lodhi.pdf", important: true },
         ],
       },
       {
         title: "Vijayanagar Empire & Bahmani Kingdom",
         items: [
-          { title: "Vijayanagar Empire", file: "assets/Medieval History/Vijaynagar_Empire.pdf" },
-          { title: "Bahmani Kingdom", file: "assets/Medieval History/Bahmani_Kingdom.pdf" },
+          { title: "Vijayanagar Empire", file: "assets/Medieval History/Vijaynagar_Empire.pdf", important: true },
+          { title: "Bahmani Kingdom", file: "assets/Medieval History/Bahmani_Kingdom.pdf", important: true },
         ],
       },
       {
         title: "Mughal Empire",
         items: [
-          { title: "Mughal Dynasty - Babur", file: "assets/Medieval History/Babur.pdf" },
-          { title: "Mughal Dynasty - Humayun", file: "assets/Medieval History/Humayun.pdf" },
+          { title: "Mughal Dynasty - Babur", file: "assets/Medieval History/Babur.pdf", important: true },
+          { title: "Mughal Dynasty - Humayun", file: "assets/Medieval History/Humayun.pdf", important: true },
           {
             title: "Mughal Dynasty - Sher Shah Suri (Interregnum)",
             file: "assets/Medieval History/Mughal_Dynasty_-_Sheshah_Suri_(Interregnum).pdf",
+            important: true,
           },
-          { title: "Mughal Dynasty - Akbar", file: "assets/Medieval History/Akbar.pdf" },
-          { title: "Mughal Dynasty - Jahangir", file: "assets/Medieval History/Jahangir.pdf" },
-          { title: "Mughal Dynasty - Shah Jahan", file: "assets/Medieval History/Shah_Jahan.pdf" },
-          { title: "Mughal Dynasty - Aurangzeb", file: "assets/Medieval History/Aurangzeb.pdf" },
+          { title: "Mughal Dynasty - Akbar", file: "assets/Medieval History/Akbar.pdf", important: true },
+          { title: "Mughal Dynasty - Jahangir", file: "assets/Medieval History/Jahangir.pdf", important: true },
+          { title: "Mughal Dynasty - Shah Jahan", file: "assets/Medieval History/Shah_Jahan.pdf", important: true },
+          { title: "Mughal Dynasty - Aurangzeb", file: "assets/Medieval History/Aurangzeb.pdf", important: true },
           { title: "Later Mughal Rulers", file: "assets/Medieval History/Later_Mughal_Rulers.pdf", available: false },
         ],
       },
       {
         title: "Maratha Kingdom",
-        items: [{ title: "Maratha Kingdom", file: "assets/Medieval History/Maratha_Empire.pdf" }],
+        items: [{ title: "Maratha Kingdom", file: "assets/Medieval History/Maratha_Empire.pdf", important: true }],
       },
       {
         title: "Sikhism",
-        items: [{ title: "Sikhism", file: "assets/Medieval History/Sikhism.pdf" }],
+        items: [{ title: "Sikhism", file: "assets/Medieval History/Sikhism.pdf", important: true }],
       },
       {
         title: "Books, Authors and Travellers",
         items: [
-          { title: "Books and Authors", file: "assets/Medieval History/Books_and_Authors_(Medieval_History).pdf" },
-          { title: "Travellers in Medieval India", file: "assets/Medieval History/Travellers_in_Medieval_India.pdf" },
+          { title: "Books and Authors", file: "assets/Medieval History/Books_and_Authors_(Medieval_History).pdf", important: true },
+          { title: "Travellers in Medieval India", file: "assets/Medieval History/Travellers_in_Medieval_India.pdf", important: true },
         ],
       },
     ],
@@ -204,26 +209,29 @@ const library = [
       {
         title: "The Advent of Europeans in India",
         items: [
-          { title: "The Advent of Europeans in India", file: "assets/Modern History/The_Advent_of_Europeans.pdf" },
-          { title: "Portuguese", file: "assets/Modern History/Portuguese.pdf" },
-          { title: "British East India Company", file: "assets/Modern History/British_East_India_Company.pdf" },
+          { title: "The Advent of Europeans in India", file: "assets/Modern History/The_Advent_of_Europeans.pdf", important: true },
+          { title: "Portuguese", file: "assets/Modern History/Portuguese.pdf", important: true },
+          { title: "British East India Company", file: "assets/Modern History/British_East_India_Company.pdf", important: true },
         ],
       },
       {
         title: "Rise and Expansion of East India Company",
         items: [
-          { title: "Expansion of East India Company - Carnatic Wars", file: "assets/Modern History/Carnatic_Wars.pdf" },
+          { title: "Expansion of East India Company - Carnatic Wars", file: "assets/Modern History/Carnatic_Wars.pdf", important: true },
           {
             title: "Expansion of East India Company - Battle of Plassey & Buxar",
             file: "assets/Modern History/Expansion_of_East_India_Company_-_Battle_of_Plassey_&_Buxar.pdf",
+            important: true,
           },
           {
             title: "Expansion of East India Company - Anglo Maratha War",
             file: "assets/Modern History/Anglo_Maratha_Wars.pdf",
+            important: true,
           },
           {
             title: "Expansion of East India Company - Anglo Mysore War",
             file: "assets/Modern History/Anglo_-_Mysore_Wars.pdf",
+            important: true,
           },
           {
             title: "Expansion of East India Company - Anglo Nepal War",
@@ -232,6 +240,7 @@ const library = [
           {
             title: "Expansion of East India Company - Anglo Sikh War",
             file: "assets/Modern History/Anglo-Sikh_Wars_(1845-1849).pdf",
+            important: true,
           },
           {
             title: "Expansion of East India Company - Anglo Afghan War",
@@ -242,12 +251,12 @@ const library = [
       {
         title: "Economic Policies of Britishers",
         items: [
-          { title: "Economic Policies of Britishers", file: "assets/Modern History/Economic_Policies_of_Britishers.pdf" },
+          { title: "Economic Policies of Britishers", file: "assets/Modern History/Economic_Policies_of_Britishers.pdf", important: true },
         ],
       },
       {
         title: "Revolt of 1857",
-        items: [{ title: "The Great Revolt of 1857", file: "assets/Modern History/_The_Revolt_of_1857.pdf" }],
+        items: [{ title: "The Great Revolt of 1857", file: "assets/Modern History/_The_Revolt_of_1857.pdf", important: true }],
       },
       {
         title: "Changes in Administration after 1857",
@@ -255,6 +264,7 @@ const library = [
           {
             title: "Changes in Administration after 1857",
             file: "assets/Modern History/Changes_in_Administration_After_the_Revolt_of_1857.pdf",
+            important: true,
           },
         ],
       },
@@ -264,6 +274,7 @@ const library = [
           {
             title: "Socio-Religious Reform Movements",
             file: "assets/Modern History/Socio-Religious_Reform_Movements.pdf",
+            important: true,
           },
         ],
       },
@@ -273,43 +284,44 @@ const library = [
           {
             title: "Political Associations Before INC",
             file: "assets/Modern History/Political_Organisations_Before_Indian_National_Congress(INC).pdf",
+            important: true,
           },
         ],
       },
       {
         title: "Indian National Congress Formation",
-        items: [{ title: "Indian National Congress Formation", file: "assets/Modern History/Indian_National_Congress.pdf" }],
+        items: [{ title: "Indian National Congress Formation", file: "assets/Modern History/Indian_National_Congress.pdf", important: true }],
       },
       {
         title: "National Movement",
         items: [
-          { title: "Freedom Movement - Moderate Phase (1885 - 1905)", file: "assets/Modern History/Freedom_Movement_-_Moderate_Phase_(1885_-_1905).pdf" },
-          { title: "Freedom Movement - Extremist Phase (1905 - 1916)", file: "assets/Modern History/Freedom_Movement_-_Extremist_Phase_(1905_-_1916).pdf" },
-          { title: "Freedom Movement - Gandhi Movements", file: "assets/Modern History/Gandhi_Movements.pdf" },
-          { title: "Freedom Movement (1919 - 1929)", file: "assets/Modern History/Freedom_Movement__(1919_-_1929).pdf" },
-          { title: "Freedom Movement (1930 - 1939)", file: "assets/Modern History/Freedom_Movement__(1930_-_1939).pdf" },
-          { title: "Freedom Movement (1939 - 1947)", file: "assets/Modern History/Freedom_Movement_(1939_-_1947).pdf" },
+          { title: "Freedom Movement - Moderate Phase (1885 - 1905)", file: "assets/Modern History/Freedom_Movement_-_Moderate_Phase_(1885_-_1905).pdf", important: true },
+          { title: "Freedom Movement - Extremist Phase (1905 - 1916)", file: "assets/Modern History/Freedom_Movement_-_Extremist_Phase_(1905_-_1916).pdf", important: true },
+          { title: "Freedom Movement - Gandhi Movements", file: "assets/Modern History/Gandhi_Movements.pdf", important: true },
+          { title: "Freedom Movement (1919 - 1929)", file: "assets/Modern History/Freedom_Movement__(1919_-_1929).pdf", important: true },
+          { title: "Freedom Movement (1930 - 1939)", file: "assets/Modern History/Freedom_Movement__(1930_-_1939).pdf", important: true },
+          { title: "Freedom Movement (1939 - 1947)", file: "assets/Modern History/Freedom_Movement_(1939_-_1947).pdf", important: true },
         ],
       },
       {
         title: "India After Freedom",
-        items: [{ title: "India After Freedom", file: "assets/Modern History/India_After_Freedom.pdf" }],
+        items: [{ title: "India After Freedom", file: "assets/Modern History/India_After_Freedom.pdf", important: true }],
       },
       {
         title: "Viceroys and Governors",
-        items: [{ title: "Viceroys and Governors", file: "assets/Modern History/_GOVERNORS_AND_VICEROYS.pdf" }],
+        items: [{ title: "Viceroys and Governors", file: "assets/Modern History/_GOVERNORS_AND_VICEROYS.pdf", important: true }],
       },
       {
         title: "Important Acts in Modern India",
-        items: [{ title: "Important Acts in Modern India", file: "assets/Modern History/Important_Acts_in_Modern_India.pdf" }],
+        items: [{ title: "Important Acts in Modern India", file: "assets/Modern History/Important_Acts_in_Modern_India.pdf", important: true }],
       },
       {
         title: "Peasant Movements",
-        items: [{ title: "Peasant Movements", file: "assets/Modern History/Peasant_Movements.pdf" }],
+        items: [{ title: "Peasant Movements", file: "assets/Modern History/Peasant_Movements.pdf", important: true }],
       },
       {
         title: "Tribal Revolts",
-        items: [{ title: "Tribal Movements", file: "assets/Modern History/Tribal_Revolts.pdf" }],
+        items: [{ title: "Tribal Movements", file: "assets/Modern History/Tribal_Revolts.pdf", important: true }],
       },
       {
         title: "Caste Movements",
@@ -322,26 +334,26 @@ const library = [
       {
         title: "Newspaper, Magazines and Journals",
         items: [
-          { title: "Newspaper, Magazines and Journals", file: "assets/Modern History/Newspapers,_Magazines,_and_Journals.pdf" },
+          { title: "Newspaper, Magazines and Journals", file: "assets/Modern History/Newspapers,_Magazines,_and_Journals.pdf", important: true },
         ],
       },
       {
         title: "Books and Authors in Modern India",
         items: [
-          { title: "Books and Authors in Modern India", file: "assets/Modern History/Important_Books_and_Their_Author_of_Modern_India.pdf" },
+          { title: "Books and Authors in Modern India", file: "assets/Modern History/Important_Books_and_Their_Author_of_Modern_India.pdf", important: true },
         ],
       },
       {
         title: "Committees and Commissions",
-        items: [{ title: "Committees and Commissions", file: "assets/Modern History/Committees_and_Commissions.pdf" }],
+        items: [{ title: "Committees and Commissions", file: "assets/Modern History/Committees_and_Commissions.pdf", important: true }],
       },
       {
         title: "Great Personalities of Modern India",
-        items: [{ title: "Great Personalities of Modern India", file: "assets/Modern History/Important_Personalities_in_India.pdf" }],
+        items: [{ title: "Great Personalities of Modern India", file: "assets/Modern History/Important_Personalities_in_India.pdf", important: true }],
       },
       {
         title: "Indian National Congress Sessions",
-        items: [{ title: "Indian National Congress Sessions", file: "assets/Modern History/INC_SESSIONS.pdf" }],
+        items: [{ title: "Indian National Congress Sessions", file: "assets/Modern History/INC_SESSIONS.pdf", important: true }],
       },
     ],
   },
@@ -352,23 +364,23 @@ const library = [
       {
         title: "Architecture",
         items: [
-          { title: "Architecture - Cave Architecture", file: "assets/Art and Culture/Cave_Architecture.pdf" },
-          { title: "Architecture - Temple Architecture", file: "assets/Art and Culture/_Architecture_Temple(Parul).pdf" },
-          { title: "Architecture - Indo - Islamic Architecture", file: "assets/Art and Culture/Architecture_-_Indo_-_Islamic_Architecture.pdf" },
+          { title: "Architecture - Cave Architecture", file: "assets/Art and Culture/Cave_Architecture.pdf", important: true },
+          { title: "Architecture - Temple Architecture", file: "assets/Art and Culture/_Architecture_Temple(Parul).pdf", important: true },
+          { title: "Architecture - Indo - Islamic Architecture", file: "assets/Art and Culture/Architecture_-_Indo_-_Islamic_Architecture.pdf", important: true },
           { title: "Architecture - Modern Architecture", file: "assets/Art and Culture/Architecture_-_Modern_Architecture.pdf" },
         ],
       },
       {
         title: "Indian Sculpture and Pottery",
-        items: [{ title: "Indian Sculpture and Pottery", file: "assets/Art and Culture/Indian_Sculpture_and_Pottery.pdf" }],
+        items: [{ title: "Indian Sculpture and Pottery", file: "assets/Art and Culture/Indian_Sculpture_and_Pottery.pdf", important: true }],
       },
       {
         title: "Edicts and Inscriptions",
-        items: [{ title: "Edicts and Inscriptions", file: "assets/Art and Culture/Edicts_and_Inscriptions.pdf" }],
+        items: [{ title: "Edicts and Inscriptions", file: "assets/Art and Culture/Edicts_and_Inscriptions.pdf", important: true }],
       },
       {
         title: "Indian Paintings",
-        items: [{ title: "Indian Paintings", file: "assets/Art and Culture/Indian_Paintings.pdf" }],
+        items: [{ title: "Indian Paintings", file: "assets/Art and Culture/Indian_Paintings.pdf", important: true }],
       },
       {
         title: "Indian Handicrafts",
@@ -377,10 +389,10 @@ const library = [
       {
         title: "Indian Music & Dance",
         items: [
-          { title: "Classical Dances of India - I", file: "assets/Art and Culture/Classical_Dances_of_India_-_I.pdf" },
-          { title: "Classical Dances of India - II", file: "assets/Art and Culture/Classical_Dances_of_India_-_II.pdf" },
-          { title: "Folk Dances of India", file: "assets/Art and Culture/Folk_Dances_of_States_-_I.pdf" },
-          { title: "Indian Music", file: "assets/Art and Culture/P_MUSIC.pdf" },
+          { title: "Classical Dances of India - I", file: "assets/Art and Culture/Classical_Dances_of_India_-_I.pdf", important: true },
+          { title: "Classical Dances of India - II", file: "assets/Art and Culture/Classical_Dances_of_India_-_II.pdf", important: true },
+          { title: "Folk Dances of India", file: "assets/Art and Culture/Folk_Dances_of_States_-_I.pdf", important: true },
+          { title: "Indian Music", file: "assets/Art and Culture/P_MUSIC.pdf", important: true },
         ],
       },
       {
@@ -393,15 +405,15 @@ const library = [
       },
       {
         title: "Religions in India",
-        items: [{ title: "Religions in India", file: "assets/Art and Culture/Religions_in_India.pdf" }],
+        items: [{ title: "Religions in India", file: "assets/Art and Culture/Religions_in_India.pdf", important: true }],
       },
       {
         title: "Languages and Literatures",
-        items: [{ title: "Languages and Literatures", file: "assets/Art and Culture/Language_and_Literature.pdf" }],
+        items: [{ title: "Languages and Literatures", file: "assets/Art and Culture/Language_and_Literature.pdf", important: true }],
       },
       {
         title: "Fairs and Festivals",
-        items: [{ title: "Fairs and Festivals", file: "assets/Art and Culture/Fairs_and_Festivals.pdf" }],
+        items: [{ title: "Fairs and Festivals", file: "assets/Art and Culture/Fairs_and_Festivals.pdf", important: true }],
       },
       {
         title: "Tribal Culture in India",
