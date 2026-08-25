@@ -1571,15 +1571,52 @@ const homeSearchInput = document.getElementById("homeSearchInput");
 const homeResultsEl = document.getElementById("homeResults");
 const homeEmptyState = document.getElementById("homeEmptyState");
 const homeClearSearch = document.getElementById("homeClearSearch");
+const homeBookmarksToggle = document.getElementById("homeBookmarksToggle");
+const homeStatsEl = document.getElementById("homeStats");
+const toastEl = document.getElementById("toast");
+const linksNavBtn = document.getElementById("linksNavBtn");
+const linksView = document.getElementById("linksView");
+const linksSearchInput = document.getElementById("linksSearchInput");
+const addLinkBtn = document.getElementById("addLinkBtn");
+const addLinkBtnFolder = document.getElementById("addLinkBtnFolder");
+const addFolderBtn = document.getElementById("addFolderBtn");
+const linkFormWrap = document.getElementById("linkFormWrap");
+const linkTitleInput = document.getElementById("linkTitleInput");
+const linkUrlInput = document.getElementById("linkUrlInput");
+const linkFolderInput = document.getElementById("linkFolderInput");
+const linkFolderOptions = document.getElementById("linkFolderOptions");
+const linkTagInput = document.getElementById("linkTagInput");
+const linkTagOptions = document.getElementById("linkTagOptions");
+const saveLinkBtn = document.getElementById("saveLinkBtn");
+const cancelLinkBtn = document.getElementById("cancelLinkBtn");
+const newFolderFormWrap = document.getElementById("newFolderFormWrap");
+const newFolderNameInput = document.getElementById("newFolderNameInput");
+const cancelNewFolderBtn = document.getElementById("cancelNewFolderBtn");
+const createFolderBtn = document.getElementById("createFolderBtn");
+const refreshLinksBtn = document.getElementById("refreshLinksBtn");
+const linkFolderListEl = document.getElementById("linkFolderList");
+const linksSearchResultsEl = document.getElementById("linksSearchResults");
+const linksEmptyState = document.getElementById("linksEmptyState");
+const linkFolderView = document.getElementById("linkFolderView");
+const linkFolderCardsEl = document.getElementById("linkFolderCards");
+const linkFolderEmptyState = document.getElementById("linkFolderEmptyState");
 
 let collapsed = false;
 let activeFolderId = null;
+let activeLinkFolder = null;
 const themeKey = "study-theme";
 const activeFolderKey = "active-folder";
 const bookmarksKey = "study-bookmarks";
+const linksCacheKey = "study-links-cache";
+const LINKS_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbwwJkcVMQuNuuztVDAaWfa6XLZFwcYFMPy8q_uh02eOBQsSXZcxbwXl_iHvbhNjmYfTJA/exec";
 let favoritesOnly = false;
+let homeBookmarksOnly = false;
 let bookmarks = new Set();
+let links = [];
+let linksLoading = false;
 let suppressHistorySync = false;
+let toastTimer = null;
 
 const statusIcon = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1624,6 +1661,14 @@ const sunIcon = `
   </svg>
 `;
 
+const driveLinkIcon = `
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M9.5 14.5 14.5 9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M11 8.5 12.4 7a3.2 3.2 0 0 1 4.6 4.5L15.5 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13 15.5 11.6 17A3.2 3.2 0 0 1 7 12.5L8.5 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+`;
+
 const moonIcon = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path
@@ -1646,6 +1691,78 @@ const saveBookmarks = () => {
   localStorage.setItem(bookmarksKey, JSON.stringify([...bookmarks]));
 };
 
+const loadLinksCache = () => {
+  try {
+    links = JSON.parse(localStorage.getItem(linksCacheKey) || "[]");
+  } catch {
+    links = [];
+  }
+};
+
+const saveLinksCache = () => {
+  localStorage.setItem(linksCacheKey, JSON.stringify(links));
+};
+
+const fetchLinksFromSheet = async () => {
+  const res = await fetch(LINKS_SHEET_URL);
+  if (!res.ok) throw new Error(`Sheet fetch error: ${res.status}`);
+  const rows = await res.json();
+  return rows.map((row, index) => ({
+    id: index,
+    title: row.title,
+    url: row.url,
+    tag: row.tag || "",
+    folder: row.folder || "",
+    addedAt: row.addedAt || Date.now(),
+  }));
+};
+
+const addLinkToSheet = async ({ title, url, tag, folder }) => {
+  const res = await fetch(LINKS_SHEET_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ title, url, tag, folder }),
+  });
+  if (!res.ok) throw new Error(`Sheet write error: ${res.status}`);
+};
+
+const refreshLinks = async ({ silent = false } = {}) => {
+  if (linksLoading) return;
+  linksLoading = true;
+  refreshLinksBtn.disabled = true;
+  try {
+    links = await fetchLinksFromSheet();
+    saveLinksCache();
+    populateTagOptions();
+    populateFolderOptions();
+  } catch {
+    if (!silent) showToast("Couldn't reach the sheet — showing the last saved copy.");
+  } finally {
+    linksLoading = false;
+    refreshLinksBtn.disabled = false;
+    renderCurrentLinksView();
+  }
+};
+
+const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const highlight = (text, query) => {
+  const q = query.trim();
+  if (!q) return text;
+  return text.replace(new RegExp(`(${escapeRegExp(q)})`, "ig"), "<mark>$1</mark>");
+};
+
+const showToast = (message) => {
+  clearTimeout(toastTimer);
+  toastEl.textContent = message;
+  toastEl.classList.remove("hidden");
+  requestAnimationFrame(() => toastEl.classList.add("visible"));
+  toastTimer = setTimeout(() => {
+    toastEl.classList.remove("visible");
+    setTimeout(() => toastEl.classList.add("hidden"), 200);
+  }, 3000);
+};
+
 const getFolderById = (id) => library.find((folder) => folder.id === id);
 
 const getFolderCount = (folder) =>
@@ -1664,6 +1781,14 @@ const getFolderBookmarkCount = (folder) =>
     0
   );
 
+const renderStats = () => {
+  const totalPdfs = library.reduce((sum, folder) => sum + getFolderCount(folder), 0);
+  const totalPages = library.reduce((sum, folder) => sum + getFolderPageCount(folder), 0);
+  const parts = [`${totalPdfs} PDFs`, `${totalPages} Pages`];
+  if (bookmarks.size > 0) parts.push(`${bookmarks.size} Bookmarked`);
+  homeStatsEl.textContent = parts.join(" • ");
+};
+
 const toggleBookmark = (item, btn) => {
   const isNowBookmarked = !bookmarks.has(item.file);
   if (isNowBookmarked) {
@@ -1679,13 +1804,14 @@ const toggleBookmark = (item, btn) => {
   if (favoritesOnly && activeFolderId) {
     renderSections(searchInput.value);
   }
-  if (homeSearchInput.value.trim()) {
-    renderHomeSearch(homeSearchInput.value);
+  if (homeSearchInput.value.trim() || homeBookmarksOnly) {
+    renderHomeView(homeSearchInput.value);
   }
   renderFolders();
+  renderStats();
 };
 
-const buildCard = (item) => {
+const buildCard = (item, query = "") => {
   const isAvailable = item.available !== false;
   const isBookmarked = bookmarks.has(item.file);
   const pageCount = pageCounts[item.file];
@@ -1705,7 +1831,7 @@ const buildCard = (item) => {
   card.innerHTML = `
     <div class="card-icon">${bookIcon}</div>
     <div>
-      <h4 class="card-title">${item.title}</h4>
+      <h4 class="card-title">${highlight(item.title, query)}</h4>
       <div class="card-meta">
         ${pageCountLabel ? `<span class="badge">${pageCountLabel}</span>` : ""}
         ${item.important ? `<span class="badge" style="background:#f59e0b;color:#1f2937;">★ Imp</span>` : ""}
@@ -1717,8 +1843,19 @@ const buildCard = (item) => {
     </div>
   `;
 
-  const openItem = () => {
+  const openItem = async () => {
     if (!isAvailable) return;
+    if (navigator.onLine) {
+      try {
+        const res = await fetch(encodeURI(item.file), { method: "HEAD" });
+        if (!res.ok) {
+          showToast(`Couldn't open "${item.title}" — the file may be missing.`);
+          return;
+        }
+      } catch {
+        // Network hiccup on an existence check shouldn't block opening — let the browser try.
+      }
+    }
     window.open(encodeURI(item.file), "_blank", "noopener");
   };
 
@@ -1743,11 +1880,25 @@ const buildCard = (item) => {
   return card;
 };
 
-const syncHistoryState = (folderId, { replace = false } = {}) => {
+const syncHistoryState = (key, { replace = false } = {}) => {
   if (suppressHistorySync) return;
 
-  const state = folderId ? { folderId } : { home: true };
-  const url = folderId ? `#${folderId}` : `${window.location.pathname}${window.location.search}`;
+  let state;
+  let url;
+  if (typeof key === "string" && key.startsWith("folder:")) {
+    const folder = key.slice("folder:".length);
+    state = { linkFolder: folder };
+    url = `#folder-${encodeURIComponent(folder)}`;
+  } else if (key === "links") {
+    state = { links: true };
+    url = "#links";
+  } else if (key) {
+    state = { folderId: key };
+    url = `#${key}`;
+  } else {
+    state = { home: true };
+    url = `${window.location.pathname}${window.location.search}`;
+  }
 
   if (replace) {
     window.history.replaceState(state, "", url);
@@ -1778,12 +1929,14 @@ const renderFolders = () => {
     `;
     folderList.appendChild(card);
   });
+  renderStats();
 };
 
-const renderHomeSearch = (query) => {
+const renderHomeView = (query) => {
   const q = query.trim().toLowerCase();
+  const active = !!q || homeBookmarksOnly;
 
-  if (!q) {
+  if (!active) {
     homeResultsEl.innerHTML = "";
     homeResultsEl.classList.add("hidden");
     homeEmptyState.classList.add("hidden");
@@ -1798,10 +1951,13 @@ const renderHomeSearch = (query) => {
   library.forEach((folder) => {
     const groups = folder.sections
       .map((section) => {
-        const sectionMatch = section.title.toLowerCase().includes(q);
-        const items = sectionMatch
+        const sectionMatch = q && section.title.toLowerCase().includes(q);
+        let items = sectionMatch
           ? section.items
-          : section.items.filter((item) => item.title.toLowerCase().includes(q));
+          : section.items.filter((item) => !q || item.title.toLowerCase().includes(q));
+        if (homeBookmarksOnly) {
+          items = items.filter((item) => bookmarks.has(item.file));
+        }
         return items;
       })
       .filter((items) => items.length > 0);
@@ -1816,7 +1972,7 @@ const renderHomeSearch = (query) => {
     cards.className = "cards";
     groups.forEach((items) => {
       items.forEach((item) => {
-        cards.appendChild(buildCard(item));
+        cards.appendChild(buildCard(item, query));
         totalMatches += 1;
       });
     });
@@ -1847,8 +2003,9 @@ const renderSections = (query = "") => {
       filteredItems = filteredItems.filter((item) => bookmarks.has(item.file));
     }
 
-    if (q && filteredItems.length === 0) return;
-    if (favoritesOnly && filteredItems.length === 0) return;
+    filteredItems = filteredItems.filter((item) => item.available !== false);
+
+    if (filteredItems.length === 0) return;
 
     const sectionEl = document.createElement("div");
     sectionEl.className = "section";
@@ -1857,7 +2014,7 @@ const renderSections = (query = "") => {
     const sectionHeader = document.createElement("div");
     sectionHeader.className = "section-header";
     sectionHeader.innerHTML = `
-      <h3>${section.title} <span class="muted">• ${sectionCount}</span></h3>
+      <h3>${highlight(section.title, query)} <span class="muted">• ${sectionCount}</span></h3>
       <button type="button" data-index="${index}" aria-expanded="${!collapsed}" aria-controls="section-cards-${index}">
         ${collapsed ? "Expand" : "Collapse"}
       </button>
@@ -1869,7 +2026,7 @@ const renderSections = (query = "") => {
     if (collapsed) cards.classList.add("hidden");
 
     filteredItems.forEach((item) => {
-      cards.appendChild(buildCard(item));
+      cards.appendChild(buildCard(item, query));
     });
 
     sectionEl.appendChild(sectionHeader);
@@ -1890,6 +2047,220 @@ const renderSections = (query = "") => {
   emptyState.classList.toggle("hidden", renderedCount > 0);
 };
 
+const normalizeUrl = (raw) => {
+  const trimmed = raw.trim();
+  if (!trimmed) return "";
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+};
+
+const populateTagOptions = () => {
+  const tags = [...new Set(links.map((link) => link.tag?.trim()).filter(Boolean))].sort();
+  linkTagOptions.innerHTML = tags.map((tag) => `<option value="${tag}"></option>`).join("");
+};
+
+const populateFolderOptions = () => {
+  const folders = [...new Set(links.map((link) => link.folder?.trim()).filter(Boolean))].sort();
+  linkFolderOptions.innerHTML = folders.map((folder) => `<option value="${folder}"></option>`).join("");
+};
+
+const hideLinkForm = () => {
+  linkFormWrap.classList.add("hidden");
+  linkTitleInput.value = "";
+  linkUrlInput.value = "";
+  linkFolderInput.value = "";
+  linkFolderInput.readOnly = false;
+  linkTagInput.value = "";
+};
+
+const showLinkForm = (lockedFolder = null) => {
+  hideNewFolderForm();
+  linkFormWrap.classList.remove("hidden");
+  if (lockedFolder !== null) {
+    linkFolderInput.value = lockedFolder;
+    linkFolderInput.readOnly = true;
+  } else {
+    linkFolderInput.readOnly = false;
+  }
+  linkTitleInput.focus();
+};
+
+const hideNewFolderForm = () => {
+  newFolderFormWrap.classList.add("hidden");
+  newFolderNameInput.value = "";
+};
+
+const showNewFolderForm = () => {
+  hideLinkForm();
+  newFolderFormWrap.classList.remove("hidden");
+  newFolderNameInput.focus();
+};
+
+const buildLinkCard = (link, query = "", { showTagBadge = true } = {}) => {
+  const card = document.createElement("article");
+  card.className = "card link-card";
+  card.dataset.id = link.id;
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", `Open ${link.title}`);
+  const dateLabel = new Date(link.addedAt).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+  card.innerHTML = `
+    <div class="card-icon">${driveLinkIcon}</div>
+    <div>
+      <h4 class="card-title">${highlight(link.title, query)}</h4>
+      <div class="card-meta">
+        ${showTagBadge && link.tag ? `<span class="badge">${highlight(link.tag, query)}</span>` : ""}
+        <span class="muted">${dateLabel}</span>
+      </div>
+    </div>
+  `;
+
+  const openLink = () => window.open(link.url, "_blank", "noopener");
+
+  card.addEventListener("click", openLink);
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+      event.preventDefault();
+      openLink();
+    }
+  });
+
+  return card;
+};
+
+const getLinkFolderGroups = () => {
+  const groups = new Map();
+  [...links]
+    .sort((a, b) => b.addedAt - a.addedAt)
+    .forEach((link) => {
+      const key = link.folder?.trim() || "Uncategorized";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(link);
+    });
+  return groups;
+};
+
+const renderLinkFolderCards = () => {
+  const groups = getLinkFolderGroups();
+  linkFolderListEl.innerHTML = "";
+  groups.forEach((items, folder) => {
+    const card = document.createElement("button");
+    card.className = "folder-card";
+    card.type = "button";
+    card.dataset.folder = folder;
+    card.innerHTML = `
+      <div class="folder-icon">${driveLinkIcon}</div>
+      <div class="folder-info">
+        <h2>${folder}</h2>
+        <p>${items.length} link${items.length === 1 ? "" : "s"}</p>
+      </div>
+      <div class="folder-chevron">${chevronIcon}</div>
+    `;
+    linkFolderListEl.appendChild(card);
+  });
+};
+
+const renderLinksHome = (query = "") => {
+  const q = query.trim().toLowerCase();
+
+  if (!q) {
+    linksSearchResultsEl.innerHTML = "";
+    linksSearchResultsEl.classList.add("hidden");
+    linkFolderListEl.classList.remove("hidden");
+    renderLinkFolderCards();
+    linksEmptyState.classList.toggle("hidden", links.length > 0);
+    if (linksView.classList.contains("active")) {
+      const folderCount = getLinkFolderGroups().size;
+      pageSubtitle.textContent = `${links.length} saved link${links.length === 1 ? "" : "s"} • ${folderCount} folder${folderCount === 1 ? "" : "s"}`;
+    }
+    return;
+  }
+
+  linkFolderListEl.classList.add("hidden");
+  linksSearchResultsEl.innerHTML = "";
+  let totalMatches = 0;
+
+  const filtered = links.filter(
+    (link) =>
+      link.title.toLowerCase().includes(q) ||
+      (link.folder || "").toLowerCase().includes(q) ||
+      (link.tag || "").toLowerCase().includes(q)
+  );
+
+  const groups = new Map();
+  [...filtered]
+    .sort((a, b) => b.addedAt - a.addedAt)
+    .forEach((link) => {
+      const key = link.folder?.trim() || "Uncategorized";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(link);
+    });
+
+  groups.forEach((items, folder) => {
+    const sectionEl = document.createElement("div");
+    sectionEl.className = "section";
+    sectionEl.innerHTML = `<div class="section-header"><h3>${highlight(folder, query)} <span class="muted">• ${items.length}</span></h3></div>`;
+    const cards = document.createElement("div");
+    cards.className = "cards";
+    items.forEach((link) => {
+      cards.appendChild(buildLinkCard(link, query));
+      totalMatches += 1;
+    });
+    sectionEl.appendChild(cards);
+    linksSearchResultsEl.appendChild(sectionEl);
+  });
+
+  linksSearchResultsEl.classList.toggle("hidden", totalMatches === 0);
+  linksEmptyState.classList.toggle("hidden", totalMatches > 0);
+
+  if (linksView.classList.contains("active")) {
+    pageSubtitle.textContent = `${totalMatches} match${totalMatches === 1 ? "" : "es"}`;
+  }
+};
+
+const renderLinkFolderView = () => {
+  const items = links
+    .filter((link) => (link.folder?.trim() || "Uncategorized") === activeLinkFolder)
+    .sort((a, b) => b.addedAt - a.addedAt);
+
+  const groups = new Map();
+  items.forEach((link) => {
+    const key = link.tag?.trim() || "General";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(link);
+  });
+
+  linkFolderCardsEl.innerHTML = "";
+  groups.forEach((groupItems, tag) => {
+    const sectionEl = document.createElement("div");
+    sectionEl.className = "section";
+    sectionEl.innerHTML = `<div class="section-header"><h3>${tag} <span class="muted">• ${groupItems.length}</span></h3></div>`;
+    const cards = document.createElement("div");
+    cards.className = "cards";
+    groupItems.forEach((link) => cards.appendChild(buildLinkCard(link, "", { showTagBadge: false })));
+    sectionEl.appendChild(cards);
+    linkFolderCardsEl.appendChild(sectionEl);
+  });
+
+  linkFolderEmptyState.classList.toggle("hidden", items.length > 0);
+  if (linkFolderView.classList.contains("active")) {
+    pageTitle.textContent = activeLinkFolder;
+    pageSubtitle.textContent = `${items.length} link${items.length === 1 ? "" : "s"}`;
+  }
+};
+
+const renderCurrentLinksView = () => {
+  if (activeLinkFolder !== null) {
+    renderLinkFolderView();
+  } else {
+    renderLinksHome(linksSearchInput.value);
+  }
+};
+
 const openFolder = (folderId) => {
   openFolderView(folderId, { updateHistory: true });
 };
@@ -1897,9 +2268,14 @@ const openFolder = (folderId) => {
 const openFolderView = (folderId, { updateHistory = false, replaceHistory = false } = {}) => {
   const folder = getFolderById(folderId);
   if (!folder) return;
+  hideLinkForm();
+  hideNewFolderForm();
   activeFolderId = folderId;
+  activeLinkFolder = null;
   localStorage.setItem(activeFolderKey, folderId);
   homeView.classList.remove("active");
+  linksView.classList.remove("active");
+  linkFolderView.classList.remove("active");
   listView.classList.add("active");
   backBtn.disabled = false;
   const count = getFolderCount(folder);
@@ -1913,15 +2289,58 @@ const openFolderView = (folderId, { updateHistory = false, replaceHistory = fals
 };
 
 const goHome = ({ updateHistory = false, replaceHistory = false } = {}) => {
+  hideLinkForm();
+  hideNewFolderForm();
   listView.classList.remove("active");
+  linksView.classList.remove("active");
+  linkFolderView.classList.remove("active");
   homeView.classList.add("active");
   backBtn.disabled = true;
   activeFolderId = null;
+  activeLinkFolder = null;
   pageTitle.textContent = "Study Library";
   pageSubtitle.textContent = "Pick a folder";
   localStorage.removeItem(activeFolderKey);
+  renderHomeView(homeSearchInput.value);
   if (updateHistory) {
     syncHistoryState(null, { replace: replaceHistory });
+  }
+};
+
+const openLinksView = ({ updateHistory = false, replaceHistory = false } = {}) => {
+  hideLinkForm();
+  hideNewFolderForm();
+  activeFolderId = null;
+  activeLinkFolder = null;
+  localStorage.removeItem(activeFolderKey);
+  homeView.classList.remove("active");
+  listView.classList.remove("active");
+  linkFolderView.classList.remove("active");
+  linksView.classList.add("active");
+  backBtn.disabled = false;
+  pageTitle.textContent = "Saved Links";
+  renderLinksHome(linksSearchInput.value);
+  refreshLinks({ silent: true });
+  if (updateHistory) {
+    syncHistoryState("links", { replace: replaceHistory });
+  }
+};
+
+const openLinkFolderView = (folder, { updateHistory = false, replaceHistory = false } = {}) => {
+  hideLinkForm();
+  hideNewFolderForm();
+  activeFolderId = null;
+  activeLinkFolder = folder;
+  localStorage.removeItem(activeFolderKey);
+  homeView.classList.remove("active");
+  listView.classList.remove("active");
+  linksView.classList.remove("active");
+  linkFolderView.classList.add("active");
+  backBtn.disabled = false;
+  renderLinkFolderView();
+  refreshLinks({ silent: true });
+  if (updateHistory) {
+    syncHistoryState(`folder:${folder}`, { replace: replaceHistory });
   }
 };
 
@@ -1931,7 +2350,19 @@ folderList.addEventListener("click", (event) => {
   openFolder(card.dataset.folderId);
 });
 
-backBtn.addEventListener("click", () => goHome({ updateHistory: true }));
+linkFolderListEl.addEventListener("click", (event) => {
+  const card = event.target.closest(".folder-card");
+  if (!card) return;
+  openLinkFolderView(card.dataset.folder, { updateHistory: true });
+});
+
+backBtn.addEventListener("click", () => {
+  if (activeLinkFolder !== null) {
+    openLinksView({ updateHistory: true });
+  } else {
+    goHome({ updateHistory: true });
+  }
+});
 backBtn.disabled = true;
 
 searchInput.addEventListener("input", (e) => renderSections(e.target.value));
@@ -1958,13 +2389,94 @@ favoritesToggle.addEventListener("click", () => {
   renderSections(searchInput.value);
 });
 
-homeSearchInput.addEventListener("input", (e) => renderHomeSearch(e.target.value));
+homeSearchInput.addEventListener("input", (e) => renderHomeView(e.target.value));
 
 homeClearSearch.addEventListener("click", () => {
   homeSearchInput.value = "";
-  renderHomeSearch("");
+  renderHomeView("");
   homeSearchInput.focus();
 });
+
+homeBookmarksToggle.addEventListener("click", () => {
+  homeBookmarksOnly = !homeBookmarksOnly;
+  homeBookmarksToggle.classList.toggle("active", homeBookmarksOnly);
+  renderHomeView(homeSearchInput.value);
+});
+
+linksNavBtn.addEventListener("click", () => openLinksView({ updateHistory: true }));
+
+linksSearchInput.addEventListener("input", (e) => renderLinksHome(e.target.value));
+
+addLinkBtn.addEventListener("click", () => {
+  if (linkFormWrap.classList.contains("hidden")) {
+    showLinkForm();
+  } else {
+    hideLinkForm();
+  }
+});
+
+addLinkBtnFolder.addEventListener("click", () => {
+  if (linkFormWrap.classList.contains("hidden")) {
+    showLinkForm(activeLinkFolder);
+  } else {
+    hideLinkForm();
+  }
+});
+
+cancelLinkBtn.addEventListener("click", hideLinkForm);
+
+addFolderBtn.addEventListener("click", () => {
+  if (newFolderFormWrap.classList.contains("hidden")) {
+    showNewFolderForm();
+  } else {
+    hideNewFolderForm();
+  }
+});
+
+cancelNewFolderBtn.addEventListener("click", hideNewFolderForm);
+
+createFolderBtn.addEventListener("click", () => {
+  const folder = newFolderNameInput.value.trim();
+  if (!folder) {
+    showToast("Type a folder name first.");
+    return;
+  }
+  hideNewFolderForm();
+  openLinkFolderView(folder, { updateHistory: true });
+});
+
+saveLinkBtn.addEventListener("click", async () => {
+  const title = linkTitleInput.value.trim();
+  const url = normalizeUrl(linkUrlInput.value);
+  const folder = linkFolderInput.value.trim();
+  const tag = linkTagInput.value.trim();
+
+  if (!title || !url || !folder) {
+    showToast("Add a title, link, and folder first.");
+    return;
+  }
+
+  try {
+    new URL(url);
+  } catch {
+    showToast("That doesn't look like a valid URL.");
+    return;
+  }
+
+  saveLinkBtn.disabled = true;
+  try {
+    await addLinkToSheet({ title, url, tag, folder });
+    hideLinkForm();
+    showToast("Link saved.");
+    await refreshLinks();
+  } catch {
+    showToast("Couldn't save the link — check your connection and try again.");
+  } finally {
+    saveLinkBtn.disabled = false;
+  }
+});
+
+refreshLinksBtn.addEventListener("click", () => refreshLinks());
 
 const setTheme = (theme) => {
   const root = document.documentElement;
@@ -1998,15 +2510,22 @@ themeToggle.addEventListener("click", () => {
 });
 
 loadBookmarks();
+loadLinksCache();
+populateTagOptions();
+populateFolderOptions();
 renderFolders();
 initTheme();
 
 window.addEventListener("popstate", (event) => {
   suppressHistorySync = true;
-  const folderId = event.state?.folderId;
+  const state = event.state;
 
-  if (folderId && getFolderById(folderId)) {
-    openFolderView(folderId);
+  if (state?.folderId && getFolderById(state.folderId)) {
+    openFolderView(state.folderId);
+  } else if (state?.linkFolder) {
+    openLinkFolderView(state.linkFolder);
+  } else if (state?.links) {
+    openLinksView();
   } else {
     goHome();
   }
@@ -2014,13 +2533,33 @@ window.addEventListener("popstate", (event) => {
   suppressHistorySync = false;
 });
 
-syncHistoryState(null, { replace: true });
+const initialHash = window.location.hash.replace(/^#/, "");
+const initialLinkFolderMatch = initialHash.match(/^folder-(.+)$/);
 
-const savedFolder = localStorage.getItem(activeFolderKey);
-if (savedFolder && getFolderById(savedFolder)) {
-  openFolderView(savedFolder, { updateHistory: true });
+if (initialLinkFolderMatch) {
+  openLinkFolderView(decodeURIComponent(initialLinkFolderMatch[1]), {
+    updateHistory: true,
+    replaceHistory: true,
+  });
+} else if (initialHash === "links") {
+  openLinksView({ updateHistory: true, replaceHistory: true });
+} else if (initialHash && getFolderById(initialHash)) {
+  openFolderView(initialHash, { updateHistory: true, replaceHistory: true });
+} else {
+  syncHistoryState(null, { replace: true });
+
+  const savedFolder = localStorage.getItem(activeFolderKey);
+  if (savedFolder && getFolderById(savedFolder)) {
+    openFolderView(savedFolder, { updateHistory: true });
+  }
 }
 
 requestAnimationFrame(() => {
   document.documentElement.classList.remove("no-transitions");
 });
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}

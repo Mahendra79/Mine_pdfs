@@ -42,6 +42,33 @@
           <p id="pageSubtitle">Pick a folder</p>
         </div>
         <div class="spacer"></div>
+        <button class="icon-button" id="linksNavBtn" aria-label="Saved Drive links">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M9.5 14.5 14.5 9.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M11 8.5 12.4 7a3.2 3.2 0 0 1 4.6 4.5L15.5 13"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13 15.5 11.6 17A3.2 3.2 0 0 1 7 12.5L8.5 11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
         <button class="icon-button" id="themeToggle" aria-label="Toggle theme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -53,6 +80,28 @@
       </header>
 
       <main>
+        <div id="linkFormWrap" class="link-form hidden">
+          <input id="linkTitleInput" type="text" placeholder="Title (e.g. Polity Notes — Channel name)" aria-label="Link title" />
+          <input id="linkUrlInput" type="url" placeholder="Drive link URL" aria-label="Link URL" />
+          <input id="linkFolderInput" type="text" list="linkFolderOptions" placeholder="Folder (e.g. Indian Polity)" aria-label="Link folder" />
+          <datalist id="linkFolderOptions"></datalist>
+          <input id="linkTagInput" type="text" list="linkTagOptions" placeholder="Tag (optional)" aria-label="Link tag" />
+          <datalist id="linkTagOptions"></datalist>
+          <p class="link-form-hint">Saved instantly and visible to everyone who opens this page.</p>
+          <div class="link-form-actions">
+            <button type="button" class="chip chip-ghost" id="cancelLinkBtn">Cancel</button>
+            <button type="button" class="chip" id="saveLinkBtn">Save</button>
+          </div>
+        </div>
+
+        <div id="newFolderFormWrap" class="link-form hidden">
+          <input id="newFolderNameInput" type="text" placeholder="Folder name (e.g. Indian Polity)" aria-label="Folder name" />
+          <div class="link-form-actions">
+            <button type="button" class="chip chip-ghost" id="cancelNewFolderBtn">Cancel</button>
+            <button type="button" class="chip" id="createFolderBtn">Create</button>
+          </div>
+        </div>
+
         <section id="homeView" class="view active">
           <div class="search-row">
             <div class="search">
@@ -68,7 +117,9 @@
               </svg>
               <input id="homeSearchInput" type="search" placeholder="Search all subjects or PDFs" aria-label="Search all subjects or PDFs" />
             </div>
+            <button class="chip chip-ghost" id="homeBookmarksToggle">Bookmarks</button>
           </div>
+          <p id="homeStats" class="home-stats"></p>
           <div id="folderList" class="folder-list"></div>
           <div id="homeResults" class="hidden"></div>
           <div id="homeEmptyState" class="empty-state hidden">
@@ -102,7 +153,46 @@
             <button type="button" class="link-button" id="clearFiltersBtn">Clear filters</button>
           </div>
         </section>
+
+        <section id="linksView" class="view">
+          <div class="search-row">
+            <div class="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none" />
+                <path
+                  d="m20 20-3.5-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <input id="linksSearchInput" type="search" placeholder="Search all tags or links" aria-label="Search all tags or links" />
+            </div>
+            <button type="button" class="chip chip-ghost" id="refreshLinksBtn">Refresh</button>
+            <button type="button" class="chip chip-ghost" id="addFolderBtn">+ New folder</button>
+            <button type="button" class="chip" id="addLinkBtn">+ Add link</button>
+          </div>
+
+          <div id="linkFolderList" class="folder-list"></div>
+          <div id="linksSearchResults" class="hidden"></div>
+          <div id="linksEmptyState" class="empty-state hidden">
+            <p>No saved links yet — add your first Drive link.</p>
+          </div>
+        </section>
+
+        <section id="linkFolderView" class="view">
+          <div class="search-row">
+            <div class="spacer"></div>
+            <button type="button" class="chip" id="addLinkBtnFolder">+ Add link</button>
+          </div>
+          <div id="linkFolderCards"></div>
+          <div id="linkFolderEmptyState" class="empty-state hidden">
+            <p>No links in this folder yet.</p>
+          </div>
+        </section>
       </main>
     </div>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
   </body>
 </html>

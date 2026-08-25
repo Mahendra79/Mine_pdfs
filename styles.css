@@ -24,8 +24,8 @@
   --radius: 16px;
   --radius-sm: 12px;
   --max-width: 480px;
-  --font-title: "Clash Display", "Sora", "Segoe UI", sans-serif;
-  --font-body: "Sora", "Segoe UI", sans-serif;
+  --font-title: -apple-system, "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+  --font-body: -apple-system, "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
 }
 
 .theme-dark {
@@ -49,8 +49,6 @@
   --border-strong: rgba(51, 65, 85, 0.9);
   --page-bg: #0f172a;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Clash+Display:wght@600;700&family=Sora:wght@400;500;600&display=swap");
 
 * {
   box-sizing: border-box;
@@ -370,6 +368,7 @@ main {
   font-weight: 700;
   font-size: 0.6rem;
   letter-spacing: 0.4px;
+  white-space: nowrap;
 }
 
 .status {
@@ -504,7 +503,7 @@ main {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .no-transitions,
@@ -512,6 +511,88 @@ main {
   transition: none !important;
 }
 
+
+.home-stats {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+mark {
+  background: var(--accent-2);
+  color: #1f2937;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--chip-bg);
+  color: var(--chip-ink);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+  max-width: calc(100% - 40px);
+  text-align: center;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.link-form {
+  display: grid;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.link-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: var(--search-bg);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.link-form input::placeholder {
+  color: var(--muted);
+}
+
+.link-form input[readonly] {
+  background: var(--bg);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.link-form-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.link-form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
 
 .empty-state {
   text-align: center;
